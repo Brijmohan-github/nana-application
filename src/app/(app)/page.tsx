@@ -17,24 +17,26 @@ const Page = async () => {
           <Badge />
           <h1>Nana Administrator</h1>{' '}
           <p>
-            This BETA is rapidly evolving, you can report any bugs against{' '}
-            <Link href="https://github.com/payloadcms/payload-3.0-demo/issues" target="_blank">
-              the repo
-            </Link>{' '}
-            or in the{' '}
-            <Link
-              href="https://discord.com/channels/967097582721572934/1215659716538273832"
-              target="_blank"
-            >
-              dedicated channel in Discord
-            </Link>
-            . Payload is running at <Link href="/admin">/admin</Link>. An example of a custom route
-            running the Local API can be found at <Link href="/my-route">/my-route</Link>.
+            <Link href="/admin">Go to handle admin site</Link>
           </p>
-          <p>You can use the Local API in your server components like this:</p>
+          <p>
+            {' '}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
         </article>
-
-        <p>This is the example in action - here is a list of all page titles:</p>
       </main>
       <Background />
     </>
