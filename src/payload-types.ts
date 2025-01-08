@@ -13,6 +13,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    products: Product;
+    wearhouse: Wearhouse;
+    wearhouseproducts: Wearhouseproduct;
+    orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -21,6 +25,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    wearhouse: WearhouseSelect<false> | WearhouseSelect<true>;
+    wearhouseproducts: WearhouseproductsSelect<false> | WearhouseproductsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -95,6 +103,84 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category?: ('Food' | 'Grocery' | 'Vagitable' | 'Dry Fruits' | 'Cereal') | null;
+  imageone?: (string | null) | Media;
+  imagetwo?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wearhouse".
+ */
+export interface Wearhouse {
+  id: string;
+  name?: string | null;
+  houseflatno?: string | null;
+  adresslineone?: string | null;
+  landmark?: string | null;
+  lat?: string | null;
+  long?: string | null;
+  mobile?: string | null;
+  currency?: ('SAR' | 'INR' | 'AED') | null;
+  min_amount?: number | null;
+  status?: ('active' | 'inactive') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wearhouseproducts".
+ */
+export interface Wearhouseproduct {
+  id: string;
+  Price?: number | null;
+  currency?: ('SAR' | 'INR' | 'AED') | null;
+  status?: ('active' | 'inactive') | null;
+  Warehouse?: (string | null) | Wearhouse;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: string;
+  orderID?: string | null;
+  orderDate?: string | null;
+  orderAmount?: number | null;
+  addressInfo?: string | null;
+  userInfo?: string | null;
+  mobile?: string | null;
+  currency?: ('SAR' | 'INR' | 'AED') | null;
+  status?: ('new' | 'cancel' | 'inprogress' | 'delivered') | null;
+  OrderBy?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -107,6 +193,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'wearhouse';
+        value: string | Wearhouse;
+      } | null)
+    | ({
+        relationTo: 'wearhouseproducts';
+        value: string | Wearhouseproduct;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: string | Order;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -182,6 +284,66 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  category?: T;
+  imageone?: T;
+  imagetwo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wearhouse_select".
+ */
+export interface WearhouseSelect<T extends boolean = true> {
+  name?: T;
+  houseflatno?: T;
+  adresslineone?: T;
+  landmark?: T;
+  lat?: T;
+  long?: T;
+  mobile?: T;
+  currency?: T;
+  min_amount?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wearhouseproducts_select".
+ */
+export interface WearhouseproductsSelect<T extends boolean = true> {
+  Price?: T;
+  currency?: T;
+  status?: T;
+  Warehouse?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderID?: T;
+  orderDate?: T;
+  orderAmount?: T;
+  addressInfo?: T;
+  userInfo?: T;
+  mobile?: T;
+  currency?: T;
+  status?: T;
+  OrderBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
