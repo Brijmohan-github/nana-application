@@ -1,7 +1,7 @@
 export const Badge = () => {
   return (
     <span className="badge">
-      <svg
+      {/* <svg
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -14,7 +14,9 @@ export const Badge = () => {
         />
         <path d="M8.77667 17.9211V11.0447L3.04407 14.4153L8.77667 17.9211Z" fill="#ffffff" />
       </svg>
-      Beta
+      Beta */}
+      <img src="logo.jpeg" width="60" height="60" style={{ borderRadius: '16px' }} alt="Logo" />{' '}
+      <h1> Nana </h1>
     </span>
   )
 }

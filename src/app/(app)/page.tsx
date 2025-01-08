@@ -15,7 +15,6 @@ const Page = async () => {
       <main>
         <article>
           <Badge />
-          <h1>Nana Administrator</h1>{' '}
           <p>
             <Link href="/admin">Go to handle admin site</Link>
           </p>
