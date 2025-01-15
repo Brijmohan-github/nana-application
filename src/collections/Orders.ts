@@ -18,7 +18,7 @@ export const Orders: CollectionConfig = {
     {
       name: 'orderDate',
       label: 'Order Date',
-      type: 'text',
+      type: 'date',
     },
     {
       name: 'orderAmount',

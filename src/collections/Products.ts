@@ -39,6 +39,12 @@ export const Products: CollectionConfig = {
       relationTo: 'media',
       required: false,
     },
+    {
+      name: 'imagethree',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
     // {
     //   name: 'createdBy',
     //   type: 'relationship',

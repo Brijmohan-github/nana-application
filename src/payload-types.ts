@@ -90,6 +90,7 @@ export interface Product {
   category?: ('Food' | 'Grocery' | 'Vagitable' | 'Dry Fruits' | 'Cereal') | null;
   imageone?: (string | null) | Media;
   imagetwo?: (string | null) | Media;
+  imagethree?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -168,6 +169,8 @@ export interface Order {
  */
 export interface User {
   id: string;
+  fullName?: string | null;
+  Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -262,6 +265,7 @@ export interface ProductsSelect<T extends boolean = true> {
   category?: T;
   imageone?: T;
   imagetwo?: T;
+  imagethree?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -317,6 +321,8 @@ export interface OrdersSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  fullName?: T;
+  Photo?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
