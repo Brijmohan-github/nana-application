@@ -11,6 +11,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    categories: Category;
     products: Product;
     wearhouse: Wearhouse;
     wearhouseproducts: Wearhouseproduct;
@@ -23,6 +24,7 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     wearhouse: WearhouseSelect<false> | WearhouseSelect<true>;
     wearhouseproducts: WearhouseproductsSelect<false> | WearhouseproductsSelect<true>;
@@ -67,30 +69,12 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
+ * via the `definition` "categories".
  */
-export interface Product {
+export interface Category {
   id: string;
   title?: string | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  category?: ('Food' | 'Grocery' | 'Vagitable' | 'Dry Fruits' | 'Cereal') | null;
-  imageone?: (string | null) | Media;
-  imagetwo?: (string | null) | Media;
-  imagethree?: (string | null) | Media;
+  image?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -115,6 +99,35 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category: string | Category;
+  imageone?: (string | null) | Media;
+  imagetwo?: (string | null) | Media;
+  imagethree?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "wearhouse".
  */
 export interface Wearhouse {
@@ -123,6 +136,7 @@ export interface Wearhouse {
   houseflatno?: string | null;
   adresslineone?: string | null;
   landmark?: string | null;
+  location?: string | null;
   lat?: string | null;
   long?: string | null;
   mobile?: string | null;
@@ -170,6 +184,7 @@ export interface Order {
 export interface User {
   id: string;
   fullName?: string | null;
+  MobileNo?: number | null;
   Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -189,6 +204,10 @@ export interface User {
 export interface PayloadLockedDocument {
   id: string;
   document?:
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
     | ({
         relationTo: 'products';
         value: string | Product;
@@ -257,6 +276,16 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products_select".
  */
 export interface ProductsSelect<T extends boolean = true> {
@@ -278,6 +307,7 @@ export interface WearhouseSelect<T extends boolean = true> {
   houseflatno?: T;
   adresslineone?: T;
   landmark?: T;
+  location?: T;
   lat?: T;
   long?: T;
   mobile?: T;
@@ -322,6 +352,7 @@ export interface OrdersSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   fullName?: T;
+  MobileNo?: T;
   Photo?: T;
   updatedAt?: T;
   createdAt?: T;

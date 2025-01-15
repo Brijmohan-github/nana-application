@@ -31,6 +31,11 @@ export const Wearhouse: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'location',
+      label: 'Location',
+      type: 'text',
+    },
+    {
       name: 'lat',
       label: 'Latitude',
       type: 'text',

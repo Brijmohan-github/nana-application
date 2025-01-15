@@ -14,6 +14,12 @@ export const Users: CollectionConfig = {
       required: false,
     },
     {
+      label: 'Mobile no',
+      name: 'MobileNo',
+      type: 'number',
+      required: false,
+    },
+    {
       name: 'Photo',
       type: 'upload',
       relationTo: 'media',

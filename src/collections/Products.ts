@@ -23,8 +23,9 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'category',
-      type: 'select',
-      options: ['Food', 'Grocery', 'Vagitable', 'Dry Fruits', 'Cereal'],
+      type: 'relationship',
+      required: true,
+      relationTo: 'categories',
     },
 
     {
