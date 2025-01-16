@@ -62,20 +62,20 @@ export const Orders: CollectionConfig = {
         //condition: (data) => !!data?.user,
       },
     },
-    // {
-    //   name: 'Products',
-    //   type: 'relationship',
-    //   relationTo: 'products',
-    //   hasMany: true,
-    //   access: {
-    //     //  update: () => false,
-    //   },
-    //   admin: {
-    //     // readOnly: true,
-    //     position: 'sidebar',
-    //     //condition: (data) => !!data?.user,
-    //   },
-    // },
+    {
+      name: 'Products',
+      type: 'relationship',
+      relationTo: 'products',
+      hasMany: true,
+      access: {
+        //  update: () => false,
+      },
+      admin: {
+        // readOnly: true,
+        position: 'sidebar',
+        //condition: (data) => !!data?.user,
+      },
+    },
   ],
   // hooks: {
   //   beforeChange: [

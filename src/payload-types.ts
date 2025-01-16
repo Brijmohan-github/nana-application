@@ -176,6 +176,7 @@ export interface Order {
   currency?: ('SAR' | 'INR' | 'AED') | null;
   status?: ('new' | 'cancel' | 'inprogress' | 'delivered') | null;
   OrderBy?: (string | null) | User;
+  Products?: (string | Product)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -350,6 +351,7 @@ export interface OrdersSelect<T extends boolean = true> {
   currency?: T;
   status?: T;
   OrderBy?: T;
+  Products?: T;
   updatedAt?: T;
   createdAt?: T;
 }
