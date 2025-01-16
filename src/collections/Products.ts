@@ -22,6 +22,17 @@ export const Products: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'weight',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'status',
+      type: 'select',
+      options: ['active', 'inactive'],
+      defaultValue: 'active',
+    },
+    {
       name: 'category',
       type: 'relationship',
       required: true,

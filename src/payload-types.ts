@@ -119,6 +119,8 @@ export interface Product {
     };
     [k: string]: unknown;
   } | null;
+  weight?: string | null;
+  status?: ('active' | 'inactive') | null;
   category: string | Category;
   imageone?: (string | null) | Media;
   imagetwo?: (string | null) | Media;
@@ -188,6 +190,9 @@ export interface User {
   Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -291,6 +296,8 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
+  weight?: T;
+  status?: T;
   category?: T;
   imageone?: T;
   imagetwo?: T;
@@ -356,6 +363,9 @@ export interface UsersSelect<T extends boolean = true> {
   Photo?: T;
   updatedAt?: T;
   createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
   email?: T;
   resetPasswordToken?: T;
   resetPasswordExpiration?: T;

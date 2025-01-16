@@ -1,11 +1,15 @@
 import type { CollectionConfig } from 'payload'
+import { addDataAndFileToRequest } from '@payloadcms/next/utilities'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'email',
   },
-  auth: true,
+  auth: {
+    useAPIKey: true,
+  },
+
   fields: [
     {
       label: 'Full Name',
@@ -24,6 +28,31 @@ export const Users: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: false,
+    },
+  ],
+  endpoints: [
+    {
+      path: '/:add-request',
+      method: 'post',
+      handler: async (req: any) => {
+        const data = await req?.json()
+        await addDataAndFileToRequest(req)
+        console.log('🚀 Brij 90 ~  file: ApprovalRequest.ts:30 ~  handler: ~  data:', data)
+        const result = await req.payload.create({ collection: 'users', data })
+        //data.userid = result.id
+        //data.infuencer = result.id
+        //const resultval = await req.payload.create({ collection: 'influencers', data })
+        return Response.json(
+          { message: `Data successfully added!`, result: result },
+          {
+            headers: {
+              'Access-Control-Allow-Origin': '*', // Adjust the origin as needed
+              'Access-Control-Allow-Methods': 'POST, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type',
+            },
+          },
+        )
+      },
     },
   ],
 }
