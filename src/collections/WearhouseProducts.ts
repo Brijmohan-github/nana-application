@@ -48,7 +48,7 @@ export const WearhouseProducts: CollectionConfig = {
       method: 'get',
       handler: async (req: any) => {
         let message = ''
-        let results = ''
+        let results = {docs:''} 
         try {
           // Debug: Log the res object to confirm it's being passed correctly
         //  console.log('Response object (res):', res)
@@ -84,10 +84,11 @@ export const WearhouseProducts: CollectionConfig = {
           console.log('Results:', results)
 
           // Ensure that results and docs are properly checked
-          if (results && results?.docs && Array.isArray(results?.docs)) {
-            if (results.docs.length > 0) {
+        //  if (results && results?.docs && Array.isArray(results?.docs)) {
+          if (results && Array.isArray(results?.docs )) {
+            if (results?.docs?.length > 0) {
               //  return res.status(200).json(results) // Send results if found
-              message = 'Product found successfully'
+              message = 'Product found successfully';
             } else {
               message = 'No products found for the specified warehouse'
             }
@@ -98,9 +99,9 @@ export const WearhouseProducts: CollectionConfig = {
             //return res.status(500).json({ error: 'Unexpected results structure.' })
           }
         } catch (error) {
-          message = 'Error fetching data:'
+          message = 'Error fetching data, Error : '+error;
           console.log('Error object:', error)
-          results = error
+         // results = error
         }
 
         return Response.json(
