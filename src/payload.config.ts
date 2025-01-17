@@ -15,18 +15,29 @@ import { Wearhouse } from './collections/Wearhouse'
 import { WearhouseProducts } from './collections/WearhouseProducts'
 import { Orders } from './collections/Orders'
 import { Categories } from './collections/Categories'
+import { CustomEndpoint } from './collections/CustomEndpoint'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  // serverURL: 'http://localhost:3000',
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Categories, Products, Wearhouse, WearhouseProducts, Orders, Users, Media],
+  collections: [
+    Categories,
+    Products,
+    Wearhouse,
+    WearhouseProducts,
+    Orders,
+    Users,
+    Media,
+    CustomEndpoint,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

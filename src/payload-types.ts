@@ -18,6 +18,7 @@ export interface Config {
     orders: Order;
     users: User;
     media: Media;
+    'custom-endpoint': CustomEndpoint;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -31,6 +32,7 @@ export interface Config {
     orders: OrdersSelect<false> | OrdersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'custom-endpoint': CustomEndpointSelect<false> | CustomEndpointSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -139,11 +141,11 @@ export interface Wearhouse {
  */
 export interface Wearhouseproduct {
   id: string;
-  Price?: number | null;
-  currency?: ('SAR' | 'INR' | 'AED') | null;
-  status?: ('active' | 'inactive') | null;
-  Warehouse?: (string | null) | Wearhouse;
-  Products?: (string | null) | Product;
+  price: number;
+  currency: 'SAR' | 'INR' | 'AED';
+  status: 'active' | 'inactive';
+  wearhouseId: string | Wearhouse;
+  products?: (string | null) | Product;
   updatedAt: string;
   createdAt: string;
 }
@@ -191,6 +193,15 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "custom-endpoint".
+ */
+export interface CustomEndpoint {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -223,6 +234,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'custom-endpoint';
+        value: string | CustomEndpoint;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -315,11 +330,11 @@ export interface WearhouseSelect<T extends boolean = true> {
  * via the `definition` "wearhouseproducts_select".
  */
 export interface WearhouseproductsSelect<T extends boolean = true> {
-  Price?: T;
+  price?: T;
   currency?: T;
   status?: T;
-  Warehouse?: T;
-  Products?: T;
+  wearhouseId?: T;
+  products?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -379,6 +394,14 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "custom-endpoint_select".
+ */
+export interface CustomEndpointSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
