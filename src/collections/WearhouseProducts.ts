@@ -41,19 +41,19 @@ export const WearhouseProducts: CollectionConfig = {
       },
     },
 
-    // {
-    //   name: 'Products',
-    //   type: 'relationship',
-    //   relationTo: 'products',
-    //   access: {
-    //     //  update: () => false,
-    //   },
-    //   admin: {
-    //     // readOnly: true,
-    //     // position: 'sidebar',
-    //     // condition: (data) => !!data?.product,
-    //   },
-    // },
+    {
+      name: 'Products',
+      type: 'relationship',
+      relationTo: 'products',
+      access: {
+        //  update: () => false,
+      },
+      admin: {
+        // readOnly: true,
+        // position: 'sidebar',
+        // condition: (data) => !!data?.product,
+      },
+    },
   ],
   // hooks: {
   //   beforeChange: [

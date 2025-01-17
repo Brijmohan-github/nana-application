@@ -143,6 +143,7 @@ export interface Wearhouseproduct {
   currency?: ('SAR' | 'INR' | 'AED') | null;
   status?: ('active' | 'inactive') | null;
   Warehouse?: (string | null) | Wearhouse;
+  Products?: (string | null) | Product;
   updatedAt: string;
   createdAt: string;
 }
@@ -318,6 +319,7 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
   currency?: T;
   status?: T;
   Warehouse?: T;
+  Products?: T;
   updatedAt?: T;
   createdAt?: T;
 }
