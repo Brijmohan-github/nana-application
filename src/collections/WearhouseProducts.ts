@@ -46,24 +46,26 @@ export const WearhouseProducts: CollectionConfig = {
     {
       path: '/filter-by-warehouse',
       method: 'get',
-      handler: async (req: any, res: any) => {
+      handler: async (req: any) => {
         let message = ''
         let results = ''
         try {
           // Debug: Log the res object to confirm it's being passed correctly
-          console.log('Response object (res):', res)
+        //  console.log('Response object (res):', res)
 
           const { payload } = req // Access payload instance
           const warehouseId = req.query.warehouse
 
           // Ensure warehouseId is provided
           if (!warehouseId) {
-            return res.status(400).json({ error: 'Warehouse ID is required.' })
+            //return res.status(400).json({ error: 'Warehouse ID is required.' })
+            message =  'Warehouse ID is required.';
           }
 
           // Validate ObjectId format
           if (!ObjectId.isValid(warehouseId)) {
-            return res.status(400).json({ error: 'Invalid Warehouse ID format.' })
+          //  return res.status(400).json({ error: 'Invalid Warehouse ID format.' })
+            message =  'Invalid Warehouse ID format.';
           }
 
           // Cast warehouseId to ObjectId
