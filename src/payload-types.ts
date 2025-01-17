@@ -104,22 +104,9 @@ export interface Media {
 export interface Product {
   id: string;
   title?: string | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  content?: string | null;
   weight?: string | null;
+  price: number;
   status?: ('active' | 'inactive') | null;
   category: string | Category;
   imageone?: (string | null) | Media;
@@ -298,6 +285,7 @@ export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   weight?: T;
+  price?: T;
   status?: T;
   category?: T;
   imageone?: T;

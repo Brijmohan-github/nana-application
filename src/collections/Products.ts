@@ -18,13 +18,18 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'content',
-      type: 'richText',
+      type: 'textarea',
       localized: true,
     },
     {
       name: 'weight',
       type: 'text',
       required: false,
+    },
+    {
+      name: 'price',
+      type: 'number',
+      required: true,
     },
     {
       name: 'status',
