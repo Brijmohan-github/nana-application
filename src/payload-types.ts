@@ -106,8 +106,6 @@ export interface Product {
   title?: string | null;
   content?: string | null;
   weight?: string | null;
-  price: number;
-  status?: ('active' | 'inactive') | null;
   category: string | Category;
   imageone?: (string | null) | Media;
   imagetwo?: (string | null) | Media;
@@ -285,8 +283,6 @@ export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   weight?: T;
-  price?: T;
-  status?: T;
   category?: T;
   imageone?: T;
   imagetwo?: T;

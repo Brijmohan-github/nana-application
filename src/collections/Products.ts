@@ -26,17 +26,17 @@ export const Products: CollectionConfig = {
       type: 'text',
       required: false,
     },
-    {
-      name: 'price',
-      type: 'number',
-      required: true,
-    },
-    {
-      name: 'status',
-      type: 'select',
-      options: ['active', 'inactive'],
-      defaultValue: 'active',
-    },
+    // {  //handling in Wearhouseproducts
+    //   name: 'price',
+    //   type: 'number',
+    //   required: true,
+    // },
+    // { //handling in Wearhouseproducts
+    //   name: 'status',
+    //   type: 'select',
+    //   options: ['active', 'inactive'],
+    //   defaultValue: 'active',
+    // },
     {
       name: 'category',
       type: 'relationship',
