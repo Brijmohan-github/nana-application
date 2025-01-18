@@ -48,47 +48,59 @@ export const WearhouseProducts: CollectionConfig = {
       method: 'get',
       handler: async (req: any) => {
         let message = ''
-        let results = {docs:''} 
+        let results = { docs: '' }
         try {
           // Debug: Log the res object to confirm it's being passed correctly
-        //  console.log('Response object (res):', res)
+          //  console.log('Response object (res):', res)
 
           const { payload } = req // Access payload instance
           const warehouseId = req.query.warehouse
+          const categoryId = req.query.category
+
+          // console.log('req query param: ', req.query)
 
           // Ensure warehouseId is provided
           if (!warehouseId) {
             //return res.status(400).json({ error: 'Warehouse ID is required.' })
-            message =  'Warehouse ID is required.';
+            message = 'Warehouse ID is required.'
           }
 
           // Validate ObjectId format
           if (!ObjectId.isValid(warehouseId)) {
-          //  return res.status(400).json({ error: 'Invalid Warehouse ID format.' })
-            message =  'Invalid Warehouse ID format.';
+            //  return res.status(400).json({ error: 'Invalid Warehouse ID format.' })
+            message = 'Invalid Warehouse ID format.'
           }
 
           // Cast warehouseId to ObjectId
           const objectId = new ObjectId(warehouseId)
+          const objectCatId = new ObjectId(categoryId)
 
           // Query the database for products matching the warehouse ID
-          results = await payload.find({
-            collection: 'wearhouseproducts',
-            where: {
-              wearhouseId: {
-                equals: objectId, // Query for the warehouse by ObjectId
+          if (categoryId) {
+            results = await payload.find({
+              collection: 'wearhouseproducts',
+              where: {
+                wearhouseId: { equals: objectId },
+                'products.category': { equals: objectCatId },
               },
-            },
-          })
+            })
+          } else {
+            results = await payload.find({
+              collection: 'wearhouseproducts',
+              where: {
+                wearhouseId: { equals: objectId },
+              },
+            })
+          }
 
           console.log('Results:', results)
 
           // Ensure that results and docs are properly checked
-        //  if (results && results?.docs && Array.isArray(results?.docs)) {
-          if (results && Array.isArray(results?.docs )) {
+          //  if (results && results?.docs && Array.isArray(results?.docs)) {
+          if (results && Array.isArray(results?.docs)) {
             if (results?.docs?.length > 0) {
               //  return res.status(200).json(results) // Send results if found
-              message = 'Product found successfully';
+              message = 'Product found successfully'
             } else {
               message = 'No products found for the specified warehouse'
             }
@@ -99,9 +111,9 @@ export const WearhouseProducts: CollectionConfig = {
             //return res.status(500).json({ error: 'Unexpected results structure.' })
           }
         } catch (error) {
-          message = 'Error fetching data, Error : '+error;
+          message = 'Error fetching data, Error : ' + error
           console.log('Error object:', error)
-         // results = error
+          // results = error
         }
 
         return Response.json(
