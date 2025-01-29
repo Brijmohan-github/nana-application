@@ -36,24 +36,35 @@ export const Wearhouse: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'mobile',
+      type: 'text',
+      admin: { position: 'sidebar' },
+    },
+
+    {
       name: 'lat',
       label: 'Latitude',
       type: 'text',
+      admin: { position: 'sidebar' },
     },
     {
       name: 'long',
       label: 'longitude',
       type: 'text',
+      admin: { position: 'sidebar' },
+    },
+    {
+      name: 'country',
+      type: 'select',
+      options: ['Saudi Arabia', 'India'],
+      admin: { position: 'sidebar' },
     },
 
-    {
-      name: 'mobile',
-      type: 'text',
-    },
     {
       name: 'currency',
       type: 'select',
       options: ['SAR', 'INR', 'AED'],
+      admin: { position: 'sidebar' },
     },
     {
       name: 'min_amount',
@@ -64,7 +75,24 @@ export const Wearhouse: CollectionConfig = {
       name: 'status',
       type: 'select',
       options: ['active', 'inactive'],
+      admin: { position: 'sidebar' },
     },
+
+    {
+      name: 'category',
+      type: 'relationship',
+      required: true,
+      relationTo: 'categories',
+      hasMany: true,
+    },
+
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+
     // {
     //   name: 'createdBy',
     //   type: 'relationship',

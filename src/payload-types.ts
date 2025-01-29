@@ -124,12 +124,15 @@ export interface Wearhouse {
   adresslineone?: string | null;
   landmark?: string | null;
   location?: string | null;
+  mobile?: string | null;
   lat?: string | null;
   long?: string | null;
-  mobile?: string | null;
+  country?: ('Saudi Arabia' | 'India') | null;
   currency?: ('SAR' | 'INR' | 'AED') | null;
   min_amount?: number | null;
   status?: ('active' | 'inactive') | null;
+  category: (string | Category)[];
+  logo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -301,12 +304,15 @@ export interface WearhouseSelect<T extends boolean = true> {
   adresslineone?: T;
   landmark?: T;
   location?: T;
+  mobile?: T;
   lat?: T;
   long?: T;
-  mobile?: T;
+  country?: T;
   currency?: T;
   min_amount?: T;
   status?: T;
+  category?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
 }
