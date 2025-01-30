@@ -83,6 +83,7 @@ export const WearhouseProducts: CollectionConfig = {
                 wearhouseId: { equals: objectId },
                 'products.category': { equals: objectCatId },
               },
+              limit: 0,
             })
           } else {
             results = await payload.find({
@@ -90,10 +91,11 @@ export const WearhouseProducts: CollectionConfig = {
               where: {
                 wearhouseId: { equals: objectId },
               },
+              limit: 0,
             })
           }
 
-          console.log('Results:', results)
+          console.log('WearhouseProducts - Product Results:', results)
 
           // Ensure that results and docs are properly checked
           //  if (results && results?.docs && Array.isArray(results?.docs)) {
