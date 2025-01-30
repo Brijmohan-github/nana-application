@@ -3,7 +3,14 @@ import type { CollectionConfig } from 'payload'
 export const Orders: CollectionConfig = {
   slug: 'orders',
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      const { userid, createdAt } = req.query
+
+      return {
+        ...(userid ? { OrderBy: { equals: userid } } : {}),
+        ...(createdAt ? { createdAt: { greater_than_equal: createdAt } } : {}),
+      }
+    },
     create: () => true,
     delete: () => true,
   },
@@ -53,13 +60,9 @@ export const Orders: CollectionConfig = {
       name: 'OrderBy',
       type: 'relationship',
       relationTo: 'users',
-      access: {
-        //  update: () => false,
-      },
+      access: {},
       admin: {
-        // readOnly: true,
         position: 'sidebar',
-        //condition: (data) => !!data?.user,
       },
     },
     {
@@ -67,29 +70,10 @@ export const Orders: CollectionConfig = {
       type: 'relationship',
       relationTo: 'products',
       hasMany: true,
-      access: {
-        //  update: () => false,
-      },
+      access: {},
       admin: {
-        // readOnly: true,
         position: 'sidebar',
-        //condition: (data) => !!data?.user,
       },
     },
   ],
-  // hooks: {
-  //   beforeChange: [
-  //     ({ req, operation, data }) => {
-  //       if (req.user) {
-  //         // if (operation === 'create') {
-  //         //   data.updatedBy = req.user.id
-  //         //   data.createdBy = req.user.id
-  //         // } else if (operation === 'update') {
-  //         data.createdBy = req.user.id
-  //         //}
-  //         return data
-  //       }
-  //     },
-  //   ],
-  // },
 }
