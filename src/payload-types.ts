@@ -125,6 +125,7 @@ export interface Wearhouse {
   landmark?: string | null;
   location?: string | null;
   mobile?: string | null;
+  shipingcharge?: string | null;
   lat?: string | null;
   long?: string | null;
   country?: ('Saudi Arabia' | 'India') | null;
@@ -158,6 +159,7 @@ export interface Order {
   id: string;
   orderDate?: string | null;
   orderAmount?: number | null;
+  shipingcharge?: string | null;
   addressInfo?: string | null;
   userInfo?: string | null;
   mobile?: string | null;
@@ -313,6 +315,7 @@ export interface WearhouseSelect<T extends boolean = true> {
   landmark?: T;
   location?: T;
   mobile?: T;
+  shipingcharge?: T;
   lat?: T;
   long?: T;
   country?: T;
@@ -344,6 +347,7 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
 export interface OrdersSelect<T extends boolean = true> {
   orderDate?: T;
   orderAmount?: T;
+  shipingcharge?: T;
   addressInfo?: T;
   userInfo?: T;
   mobile?: T;

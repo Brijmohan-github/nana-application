@@ -40,6 +40,11 @@ export const Wearhouse: CollectionConfig = {
       type: 'text',
       admin: { position: 'sidebar' },
     },
+    {
+      name: 'shipingcharge',
+      type: 'text',
+      admin: { position: 'sidebar' },
+    },
 
     {
       name: 'lat',

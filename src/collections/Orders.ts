@@ -33,6 +33,10 @@ export const Orders: CollectionConfig = {
       type: 'number',
     },
     {
+      name: 'shipingcharge',
+      type: 'text',
+    },
+    {
       name: 'addressInfo',
       label: 'Address Info',
       type: 'text',
