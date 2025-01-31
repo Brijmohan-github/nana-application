@@ -18,10 +18,10 @@ export const Orders: CollectionConfig = {
     // useAsTitle: 'name',
   },
   fields: [
-    {
-      name: 'orderID',
-      type: 'text',
-    },
+    // {
+    //   name: 'orderID',
+    //   type: 'text',
+    // },
     {
       name: 'orderDate',
       label: 'Order Date',
@@ -50,30 +50,34 @@ export const Orders: CollectionConfig = {
       name: 'currency',
       type: 'select',
       options: ['SAR', 'INR', 'AED'],
+      admin: { position: 'sidebar' },
     },
     {
       name: 'status',
       type: 'select',
       options: ['new', 'cancel', 'inprogress', 'delivered'],
+      admin: { position: 'sidebar' },
     },
     {
       name: 'OrderBy',
       type: 'relationship',
       relationTo: 'users',
       access: {},
-      admin: {
-        position: 'sidebar',
-      },
+      admin: { position: 'sidebar' },
     },
     {
       name: 'Products',
-      type: 'relationship',
-      relationTo: 'products',
-      hasMany: true,
-      access: {},
-      admin: {
-        position: 'sidebar',
-      },
+      type: 'json',
     },
+    // {
+    //   name: 'Products',
+    //   type: 'relationship',
+    //   relationTo: 'products',
+    //   hasMany: true,
+    //   access: {},
+    //   admin: {
+    //     position: 'sidebar',
+    //   },
+    // },
   ],
 }

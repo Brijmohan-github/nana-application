@@ -19,9 +19,14 @@ export const Users: CollectionConfig = {
     },
     {
       label: 'Mobile no',
-      name: 'MobileNo',
+      name: 'mobile',
       type: 'number',
       required: false,
+    },
+    {
+      label: 'Address',
+      name: 'address',
+      type: 'text',
     },
     {
       name: 'Photo',

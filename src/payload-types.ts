@@ -156,7 +156,6 @@ export interface Wearhouseproduct {
  */
 export interface Order {
   id: string;
-  orderID?: string | null;
   orderDate?: string | null;
   orderAmount?: number | null;
   addressInfo?: string | null;
@@ -165,7 +164,15 @@ export interface Order {
   currency?: ('SAR' | 'INR' | 'AED') | null;
   status?: ('new' | 'cancel' | 'inprogress' | 'delivered') | null;
   OrderBy?: (string | null) | User;
-  Products?: (string | Product)[] | null;
+  Products?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -176,7 +183,8 @@ export interface Order {
 export interface User {
   id: string;
   fullName?: string | null;
-  MobileNo?: number | null;
+  mobile?: number | null;
+  address?: string | null;
   Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -334,7 +342,6 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
  * via the `definition` "orders_select".
  */
 export interface OrdersSelect<T extends boolean = true> {
-  orderID?: T;
   orderDate?: T;
   orderAmount?: T;
   addressInfo?: T;
@@ -353,7 +360,8 @@ export interface OrdersSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   fullName?: T;
-  MobileNo?: T;
+  mobile?: T;
+  address?: T;
   Photo?: T;
   updatedAt?: T;
   createdAt?: T;
