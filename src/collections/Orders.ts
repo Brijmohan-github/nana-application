@@ -18,10 +18,10 @@ export const Orders: CollectionConfig = {
     // useAsTitle: 'name',
   },
   fields: [
-    // {
-    //   name: 'orderID',
-    //   type: 'text',
-    // },
+    {
+      name: 'orderID',
+      type: 'text',
+    },
     {
       name: 'orderDate',
       label: 'Order Date',

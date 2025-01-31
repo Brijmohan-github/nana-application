@@ -18,6 +18,11 @@ export const WearhouseProducts: CollectionConfig = {
       required: true,
     },
     {
+      name: 'originalprice',
+      type: 'number',
+      required: true,
+    },
+    {
       name: 'currency',
       type: 'select',
       options: ['SAR', 'INR', 'AED'],

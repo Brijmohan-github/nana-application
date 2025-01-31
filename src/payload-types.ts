@@ -144,6 +144,7 @@ export interface Wearhouse {
 export interface Wearhouseproduct {
   id: string;
   price: number;
+  originalprice: number;
   currency: 'SAR' | 'INR' | 'AED';
   status: 'active' | 'inactive';
   wearhouseId: string | Wearhouse;
@@ -157,6 +158,7 @@ export interface Wearhouseproduct {
  */
 export interface Order {
   id: string;
+  orderID?: string | null;
   orderDate?: string | null;
   orderAmount?: number | null;
   shipingcharge?: string | null;
@@ -333,6 +335,7 @@ export interface WearhouseSelect<T extends boolean = true> {
  */
 export interface WearhouseproductsSelect<T extends boolean = true> {
   price?: T;
+  originalprice?: T;
   currency?: T;
   status?: T;
   wearhouseId?: T;
@@ -345,6 +348,7 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
  * via the `definition` "orders_select".
  */
 export interface OrdersSelect<T extends boolean = true> {
+  orderID?: T;
   orderDate?: T;
   orderAmount?: T;
   shipingcharge?: T;
