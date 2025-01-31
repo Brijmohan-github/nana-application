@@ -20,6 +20,10 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  localization: {
+    locales: ['en', 'hi', 'ar'], // required
+    defaultLocale: 'en', // required
+  },
   admin: {
     user: Users.slug,
     importMap: {

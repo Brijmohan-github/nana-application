@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
+  localization: {
+    locales: ['en', 'es', 'de'], // required
+    defaultLocale: 'en', // required
+  },
   access: {
     read: () => true,
     create: () => true,
