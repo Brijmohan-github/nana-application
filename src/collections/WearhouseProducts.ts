@@ -13,13 +13,24 @@ export const WearhouseProducts: CollectionConfig = {
   },
   fields: [
     {
+      name: 'products',
+      type: 'relationship',
+      relationTo: 'products',
+    },
+    {
+      name: 'originalprice',
+      type: 'number',
+      required: true,
+    },
+    {
       name: 'price',
       type: 'number',
       required: true,
     },
     {
-      name: 'originalprice',
-      type: 'number',
+      name: 'wearhouseId',
+      type: 'relationship',
+      relationTo: 'wearhouse',
       required: true,
     },
     {
@@ -33,17 +44,6 @@ export const WearhouseProducts: CollectionConfig = {
       type: 'select',
       options: ['active', 'inactive'],
       required: true,
-    },
-    {
-      name: 'wearhouseId',
-      type: 'relationship',
-      relationTo: 'wearhouse',
-      required: true,
-    },
-    {
-      name: 'products',
-      type: 'relationship',
-      relationTo: 'products',
     },
   ],
 

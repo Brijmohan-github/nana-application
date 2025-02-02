@@ -9,7 +9,9 @@ export const Users: CollectionConfig = {
   auth: {
     useAPIKey: true,
   },
-
+  access: {
+    update: () => true,
+  },
   fields: [
     {
       label: 'Full Name',
