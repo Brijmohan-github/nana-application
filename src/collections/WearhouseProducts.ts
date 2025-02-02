@@ -40,6 +40,11 @@ export const WearhouseProducts: CollectionConfig = {
       required: true,
     },
     {
+      name: 'rank',
+      type: 'number',
+      required: false,
+    },
+    {
       name: 'status',
       type: 'select',
       options: ['active', 'inactive'],
