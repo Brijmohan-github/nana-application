@@ -42,7 +42,6 @@ export const WearhouseProducts: CollectionConfig = {
     {
       name: 'rank',
       type: 'number',
-      required: false,
     },
     {
       name: 'status',
