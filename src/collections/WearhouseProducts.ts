@@ -16,6 +16,7 @@ export const WearhouseProducts: CollectionConfig = {
       name: 'products',
       type: 'relationship',
       relationTo: 'products',
+      index:true,
     },
     {
       name: 'originalprice',
