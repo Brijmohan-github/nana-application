@@ -129,6 +129,7 @@ export interface Wearhouse {
   lat?: string | null;
   long?: string | null;
   country?: ('Saudi Arabia' | 'India') | null;
+  pincode?: string | null;
   currency?: ('SAR' | 'INR' | 'AED') | null;
   min_amount?: number | null;
   status?: ('active' | 'inactive') | null;
@@ -143,12 +144,13 @@ export interface Wearhouse {
  */
 export interface Wearhouseproduct {
   id: string;
-  price: number;
-  originalprice: number;
-  currency: 'SAR' | 'INR' | 'AED';
-  status: 'active' | 'inactive';
-  wearhouseId: string | Wearhouse;
   products?: (string | null) | Product;
+  originalprice?: number | null;
+  price: number;
+  wearhouseId: string | Wearhouse;
+  currency: 'SAR' | 'INR' | 'AED';
+  rank?: number | null;
+  status: 'active' | 'inactive';
   updatedAt: string;
   createdAt: string;
 }
@@ -189,6 +191,7 @@ export interface User {
   fullName?: string | null;
   mobile?: number | null;
   address?: string | null;
+  pincode?: string | null;
   Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -321,6 +324,7 @@ export interface WearhouseSelect<T extends boolean = true> {
   lat?: T;
   long?: T;
   country?: T;
+  pincode?: T;
   currency?: T;
   min_amount?: T;
   status?: T;
@@ -334,12 +338,13 @@ export interface WearhouseSelect<T extends boolean = true> {
  * via the `definition` "wearhouseproducts_select".
  */
 export interface WearhouseproductsSelect<T extends boolean = true> {
-  price?: T;
-  originalprice?: T;
-  currency?: T;
-  status?: T;
-  wearhouseId?: T;
   products?: T;
+  originalprice?: T;
+  price?: T;
+  wearhouseId?: T;
+  currency?: T;
+  rank?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -370,6 +375,7 @@ export interface UsersSelect<T extends boolean = true> {
   fullName?: T;
   mobile?: T;
   address?: T;
+  pincode?: T;
   Photo?: T;
   updatedAt?: T;
   createdAt?: T;

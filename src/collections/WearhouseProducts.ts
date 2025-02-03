@@ -66,7 +66,7 @@ export const WearhouseProducts: CollectionConfig = {
           const warehouseId = req.query.warehouse
           const categoryId = req.query.category
 
-          // console.log('req query param: ', req.query)
+          console.log('req query param: ', warehouseId, categoryId)
 
           // Ensure warehouseId is provided
           if (!warehouseId) {
@@ -85,28 +85,75 @@ export const WearhouseProducts: CollectionConfig = {
           const objectCatId = new ObjectId(categoryId)
 
           // Query the database for products matching the warehouse ID
+          // if (categoryId) {
+          //   results = await payload.find({
+          //     collection: 'wearhouseproducts',
+          //     where: {
+          //       wearhouseId: { equals: objectId },
+          //       products: {
+          //         some: {
+          //           category: { equals: objectCatId },
+          //         },
+          //       },
+          //     },
+          //     limit: 3,
+          //     sort: '-rank',
+          //     depth: 2, // Ensures relations are properly resolved
+          //     debug: true,
+          //   })
+          // } else {
+          // results =  await payload.find({
+          //   collection: 'wearhouseproducts',
+          //   where: {
+          //     wearhouseId: { equals: objectId },
+          //   },
+          //   limit: 0,
+          //   sort: '-rank',
+          // })
+          // }
+
           if (categoryId) {
+            // Fetch products that belong to the given category
+            const productsInCategory = await payload.find({
+              collection: 'products',
+              where: {
+                category: { equals: objectCatId },
+              },
+              limit: 100, // Adjust limit as needed
+              depth: 1,
+            })
+
+            const productIds = productsInCategory.docs.map((p: any) => p.id) // Extract product IDs
+
+            //  console.log('Filtered Product IDs:', productIds)
+
+            // Use product IDs to filter wearhouseproducts
             results = await payload.find({
               collection: 'wearhouseproducts',
               where: {
                 wearhouseId: { equals: objectId },
-                'products.category': { equals: objectCatId },
+                products: { in: productIds }, // Match any product in the list
               },
-              limit: 0,
+              limit: 100,
               sort: '-rank',
+              depth: 2,
+              debug: true,
             })
           } else {
+            // Original query without category filtering
             results = await payload.find({
               collection: 'wearhouseproducts',
               where: {
                 wearhouseId: { equals: objectId },
               },
-              limit: 0,
+              limit: 100,
               sort: '-rank',
+              depth: 2,
+              debug: true,
             })
           }
 
-          console.log('WearhouseProducts - Product Results:', results)
+          // console.log('WearhouseProducts - Product Results:', results)
 
           // Ensure that results and docs are properly checked
           //  if (results && results?.docs && Array.isArray(results?.docs)) {
