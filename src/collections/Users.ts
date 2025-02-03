@@ -31,6 +31,11 @@ export const Users: CollectionConfig = {
       type: 'text',
     },
     {
+      label: 'Pin code',
+      name: 'pincode',
+      type: 'text',
+    },
+    {
       name: 'Photo',
       type: 'upload',
       relationTo: 'media',

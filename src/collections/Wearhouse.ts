@@ -64,6 +64,11 @@ export const Wearhouse: CollectionConfig = {
       options: ['Saudi Arabia', 'India'],
       admin: { position: 'sidebar' },
     },
+    {
+      name: 'pincode',
+      label: 'Pin code',
+      type: 'text',
+    },
 
     {
       name: 'currency',
