@@ -16,7 +16,7 @@ export const WearhouseProducts: CollectionConfig = {
       name: 'products',
       type: 'relationship',
       relationTo: 'products',
-      index:true,
+      index: true,
     },
     {
       name: 'originalprice',
@@ -94,6 +94,7 @@ export const WearhouseProducts: CollectionConfig = {
                 'products.category': { equals: objectCatId },
               },
               limit: 0,
+              sort: '-rank',
             })
           } else {
             results = await payload.find({
@@ -102,6 +103,7 @@ export const WearhouseProducts: CollectionConfig = {
                 wearhouseId: { equals: objectId },
               },
               limit: 0,
+              sort: '-rank',
             })
           }
 
