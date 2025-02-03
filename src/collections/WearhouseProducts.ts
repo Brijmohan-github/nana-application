@@ -21,7 +21,6 @@ export const WearhouseProducts: CollectionConfig = {
     {
       name: 'originalprice',
       type: 'number',
-      required: true,
     },
     {
       name: 'price',
