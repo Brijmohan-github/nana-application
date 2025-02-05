@@ -12,7 +12,8 @@ export const Orders: CollectionConfig = {
       }
     },
     create: () => true,
-    delete: () => true,
+    update: () => true,
+    // delete: () => true,
   },
   admin: {
     // useAsTitle: 'name',
