@@ -179,6 +179,7 @@ export interface Order {
     | number
     | boolean
     | null;
+  warehouseid?: (string | null) | Wearhouse;
   updatedAt: string;
   createdAt: string;
 }
@@ -364,6 +365,7 @@ export interface OrdersSelect<T extends boolean = true> {
   status?: T;
   OrderBy?: T;
   Products?: T;
+  warehouseid?: T;
   updatedAt?: T;
   createdAt?: T;
 }

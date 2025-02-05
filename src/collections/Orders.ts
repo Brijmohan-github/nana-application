@@ -73,15 +73,13 @@ export const Orders: CollectionConfig = {
       name: 'Products',
       type: 'json',
     },
-    // {
-    //   name: 'Products',
-    //   type: 'relationship',
-    //   relationTo: 'products',
-    //   hasMany: true,
-    //   access: {},
-    //   admin: {
-    //     position: 'sidebar',
-    //   },
-    // },
+    {
+      name: 'warehouseid',
+      type: 'relationship',
+      relationTo: 'wearhouse',
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }
