@@ -160,7 +160,7 @@ export interface Wearhouseproduct {
  */
 export interface Order {
   id: string;
-  orderID?: string | null;
+  orderid?: string | null;
   orderDate?: string | null;
   orderAmount?: number | null;
   shipingcharge?: string | null;
@@ -354,7 +354,7 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
  * via the `definition` "orders_select".
  */
 export interface OrdersSelect<T extends boolean = true> {
-  orderID?: T;
+  orderid?: T;
   orderDate?: T;
   orderAmount?: T;
   shipingcharge?: T;

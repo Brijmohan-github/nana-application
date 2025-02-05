@@ -19,7 +19,7 @@ export const Orders: CollectionConfig = {
   },
   fields: [
     {
-      name: 'orderID',
+      name: 'orderid',
       type: 'text',
     },
     {
@@ -82,4 +82,19 @@ export const Orders: CollectionConfig = {
       },
     },
   ],
+
+  hooks: {
+    beforeChange: [
+      ({ req, operation, data }) => {
+        console.log('🚀 Brij  ~  file: Orders.ts:90 ~  req:', operation)
+        const timestamp = Math.floor(Date.now() / 1000)
+
+        if (operation === 'create') {
+          data.orderid = timestamp
+        }
+
+        return data
+      },
+    ],
+  },
 }
