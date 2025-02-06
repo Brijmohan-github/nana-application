@@ -1,10 +1,13 @@
 'use client'
 
 import { Badge } from '@/collections/Badge'
-import { jsPDF } from 'jspdf'
-import 'jspdf-autotable'
+// import { jsPDF } from 'jspdf'
+// import 'jspdf-autotable'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+
+import * as jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
 // Function to Convert Image URL to Base64
 const getBase64Image = async (imgUrl: string) => {
