@@ -1,7 +1,7 @@
 'use client'
 
 import { Badge } from '@/collections/Badge'
-import jsPDF from 'jspdf'
+import { jsPDF } from 'jspdf'
 import 'jspdf-autotable'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
