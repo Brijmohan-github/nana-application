@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 // Function to Convert Image URL to Base64
-const getBase64Image = async (imgUrl) => {
+const getBase64Image = async (imgUrl: string) => {
   const response = await fetch(imgUrl)
   const blob = await response.blob()
   return new Promise((resolve) => {
