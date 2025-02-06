@@ -50,13 +50,13 @@ export default function Page() {
     }
   }
 
+  const pdf = new jsPDF('portrait')
   async function downloadinvoice(tabledata: any) {
     if (!tabledata?.Products?.length) {
       alert('No products to display!')
       return
     }
 
-    const pdf = new jsPDF('portrait')
     pdf.setFontSize(18)
     pdf.text('NANA online shopping - Order invoice', 50, 15)
     pdf.text(
