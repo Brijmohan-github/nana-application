@@ -21,7 +21,19 @@ const getBase64Image = async (imgUrl: string) => {
 }
 
 export default function Page() {
-  const [tabledata, setTabledata] = useState([])
+  const [tabledata, setTabledata] = useState({
+    id: String,
+    orderDate: String,
+    orderAmount: Number,
+    shipingcharge: String,
+    addressInfo: String,
+    userInfo: String,
+    mobile: String,
+    currency: String,
+    status: String,
+    OrderBy: String,
+    Products: [],
+  })
   const [id, setOrderId] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -170,7 +182,7 @@ export default function Page() {
                     <th style={thStyle}> </th>
                     <th style={thStyle}>Total</th>
                     <th style={thStyle}>
-                      {tabledata?.currency} {tabledata?.orderAmount}
+                      {`Amount : ${tabledata?.currency} ${tabledata?.orderAmount}`}
                     </th>
                   </tr>
                 </thead>
