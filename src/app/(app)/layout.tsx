@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './globals.scss'
 import { Inter } from 'next/font/google'
 
@@ -11,7 +11,9 @@ const inter = Inter({
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html className={inter.className}>
-      <body>{children}</body>
+      <body>
+        <Suspense>{children}</Suspense>
+      </body>
     </html>
   )
 }
