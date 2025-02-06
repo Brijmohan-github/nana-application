@@ -107,7 +107,7 @@ export default function Page() {
         lineHeight: 15.5,
         valign: 'middle',
       },
-      didDrawCell: function (data) {
+      didDrawCell: function (data: any) {
         if (data.section === 'body' && data.column.index === 0) {
           const image = productArray[data.row.index]?.image
           if (image) {
@@ -146,7 +146,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {tabledata?.Products?.map((item) => (
+                  {tabledata?.Products?.map((item: any) => (
                     <tr key={item.id} style={{ textAlign: 'center' }}>
                       <td style={tdStyle}>
                         <img width={100} src={item.image} />
