@@ -2,7 +2,7 @@
 
 import { Badge } from '@/collections/Badge'
 import { jsPDF } from 'jspdf'
-import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
