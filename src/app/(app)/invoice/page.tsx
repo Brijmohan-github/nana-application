@@ -39,8 +39,8 @@ export default function Page() {
 
   const getOrderInfo = async () => {
     try {
-      let data = await fetch('/api/orders/' + id)
-      let response = await data.json()
+      const data_reponse = await fetch('/api/orders/' + id)
+      const response = await data_reponse.json()
       setTabledata(response)
       console.log('order details : ', JSON.stringify(response))
     } catch (error) {
