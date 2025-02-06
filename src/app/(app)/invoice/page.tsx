@@ -76,7 +76,7 @@ export default function Page() {
 
     // Convert all images to Base64 first
     const productArray = await Promise.all(
-      tabledata.Products.map(async (item) => {
+      tabledata.Products.map(async (item: any) => {
         const base64Image = await getBase64Image(item.image)
         return {
           image: base64Image,
