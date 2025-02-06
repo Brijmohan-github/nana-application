@@ -50,7 +50,7 @@ export default function Page() {
     }
   }
 
-  async function downloadinvoice(tabledata) {
+  async function downloadinvoice(tabledata: any) {
     if (!tabledata?.Products?.length) {
       alert('No products to display!')
       return
