@@ -4,6 +4,7 @@ import { Badge } from '@/collections/Badge'
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 // Function to Convert Image URL to Base64
 const getBase64Image = async (imgUrl) => {
@@ -20,8 +21,34 @@ const getBase64Image = async (imgUrl) => {
 
 export default function Page() {
   const [tabledata, setTabledata] = useState([])
-  const [data, setData] = useState([])
+  const [id, setOrderId] = useState('')
   const [loading, setLoading] = useState(true)
+
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const orderId = searchParams.get('orderId') || 0
+    setOrderId(orderId)
+  }, [searchParams])
+
+  useEffect(() => {
+    if (id) {
+      getOrderInfo()
+    }
+  }, [id])
+
+  const getOrderInfo = async () => {
+    try {
+      let data = await fetch('/api/orders/' + id)
+      let response = await data.json()
+      setTabledata(response)
+      console.log('order details : ', JSON.stringify(response))
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   async function downloadinvoice(tabledata) {
     if (!tabledata?.Products?.length) {
@@ -51,7 +78,6 @@ export default function Page() {
     const productArray = await Promise.all(
       tabledata.Products.map(async (item) => {
         const base64Image = await getBase64Image(item.image)
-        // if (item.index === 0) {
         return {
           image: base64Image,
           name: item.name,
@@ -77,18 +103,11 @@ export default function Page() {
       startY: 70,
       head: [['Icon', 'Name', 'Weight', 'Quantity', 'Price', 'Cost']],
       body: tableBody,
-      // ✅ Increase Row Height
-      // didParseCell: function (data) {
-      //   if (data.section === 'body') {
-      //     data.cell.height = 320 // Set desired row height (adjust as needed)
-      //   }
-      // },
       styles: {
-        lineHeight: 15.5, // ✅ Increase this value to add more height to rows
-        valign: 'middle', // Optional: Vertically align content to the middle
+        lineHeight: 15.5,
+        valign: 'middle',
       },
       didDrawCell: function (data) {
-        // ✅ Render images ONLY in the body section
         if (data.section === 'body' && data.column.index === 0) {
           const image = productArray[data.row.index]?.image
           if (image) {
@@ -96,47 +115,11 @@ export default function Page() {
           }
         }
       },
-
       foot: [[' ', ' ', ' ', ' ', 'Total', `${tabledata?.currency} ${tabledata?.orderAmount}`]],
     })
 
     pdf.save(`Order-${tabledata?.orderid}.pdf`)
   }
-
-  useEffect(() => {
-    getOrderInfo()
-  }, [])
-
-  const getOrderInfo = async () => {
-    try {
-      let data = await fetch('/api/orders/67a097dd0e7a4ad5ae34998b')
-      let response = await data.json()
-      setTabledata(response)
-      console.log('order details : ', JSON.stringify(response))
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // return (
-  //   <>
-  //     <main style={{ backgroundColor: 'gray' }}>
-  //       <div>
-  //         <button onClick={() => demo(tabledata)}>Download PDF</button>
-  //       </div>
-  //     </main>
-  //   </>
-  // )
-
-  // const productArrayData =
-  //   tabledata?.Products?.map((item) => [
-  //     <img src="${item.image}" />,
-  //     item.weight,
-  //     item.price,
-  //     item.quantity,
-  //   ]) || []
 
   return (
     <>
@@ -166,14 +149,12 @@ export default function Page() {
                   {tabledata?.Products?.map((item) => (
                     <tr key={item.id} style={{ textAlign: 'center' }}>
                       <td style={tdStyle}>
-                        <img width={100} src={item.image}></img>
+                        <img width={100} src={item.image} />
                       </td>
                       <td style={tdStyle}>{item.title}</td>
                       <td style={tdStyle}>{item.weight}</td>
-
-                      <td style={tdStyle}>{item.price}</td>
                       <td style={tdStyle}>{item.quantity}</td>
-
+                      <td style={tdStyle}>{item.price}</td>
                       <td style={tdStyle}>{item.price * item.quantity}</td>
                     </tr>
                   ))}
