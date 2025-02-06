@@ -50,8 +50,9 @@ export default function Page() {
     }
   }
 
-  const pdf = new jsPDF('portrait')
   async function downloadinvoice(tabledata: any) {
+    const pdf = new jsPDF('portrait')
+
     if (!tabledata?.Products?.length) {
       alert('No products to display!')
       return
