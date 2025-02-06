@@ -28,7 +28,7 @@ export default function Page() {
 
   useEffect(() => {
     const orderId = searchParams.get('orderId') || 0
-    setOrderId(orderId)
+    setOrderId(orderId.toString())
   }, [searchParams])
 
   useEffect(() => {
