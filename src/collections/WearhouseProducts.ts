@@ -19,6 +19,14 @@ export const WearhouseProducts: CollectionConfig = {
       index: true,
     },
     {
+      name: 'categoryid',
+      type: 'relationship',
+      relationTo: 'categories',
+      admin: {
+        hidden: true,
+      },
+    },
+    {
       name: 'originalprice',
       type: 'number',
     },
@@ -189,4 +197,36 @@ export const WearhouseProducts: CollectionConfig = {
       },
     },
   ],
+
+  hooks: {
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        const { payload } = req // Access payload instance
+
+        console.log('🚀 Brij  ~  file: WearhouseProducts.ts:206 ~  data:', data)
+
+        if (operation === 'create' || operation === 'update') {
+          const objectProId = new ObjectId(data?.products)
+          // Fetch products that belong to the given category
+          const product_detail = await payload.find({
+            collection: 'products',
+            where: {
+              id: { equals: objectProId },
+            },
+            limit: 1, // Adjust limit as needed
+            depth: 0,
+          })
+
+          console.log(
+            '🚀 Brij  ~  file: WearhouseProducts.ts:219 ~  product_detail:',
+            product_detail.docs[0].category,
+          )
+
+          data.categoryid = product_detail?.docs[0]?.category
+        }
+
+        return data
+      },
+    ],
+  },
 }

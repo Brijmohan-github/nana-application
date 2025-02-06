@@ -145,6 +145,7 @@ export interface Wearhouse {
 export interface Wearhouseproduct {
   id: string;
   products?: (string | null) | Product;
+  categoryid?: (string | null) | Category;
   originalprice?: number | null;
   price: number;
   wearhouseId: string | Wearhouse;
@@ -340,6 +341,7 @@ export interface WearhouseSelect<T extends boolean = true> {
  */
 export interface WearhouseproductsSelect<T extends boolean = true> {
   products?: T;
+  categoryid?: T;
   originalprice?: T;
   price?: T;
   wearhouseId?: T;

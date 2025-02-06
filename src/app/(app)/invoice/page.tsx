@@ -3,6 +3,7 @@
 import { Badge } from '@/collections/Badge'
 import { jsPDF } from 'jspdf'
 import autoTable from 'jspdf-autotable'
+
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
@@ -81,7 +82,7 @@ export default function Page() {
         const base64Image = await getBase64Image(item.image)
         return {
           image: base64Image,
-          name: item.name,
+          title: item.title,
           weight: item.weight,
           price: item.price,
           quantity: item.quantity,
@@ -92,22 +93,22 @@ export default function Page() {
     // Prepare table data without images
     const tableBody = productArray.map((item) => [
       '',
-      item.name,
+      item.title,
       item.weight,
       item.quantity,
       item.price,
       item.quantity * item.price,
     ])
 
-    pdf.autoTable({
-      startX: 20,
+    autoTable(pdf, {
+      // startX: 20,
       startY: 70,
       head: [['Icon', 'Name', 'Weight', 'Quantity', 'Price', 'Cost']],
       body: tableBody,
-      styles: {
-        lineHeight: 15.5,
-        valign: 'middle',
-      },
+      // styles: {
+      //   lineHeight: 15.5,
+      //   valign: 'middle',
+      // },
       didDrawCell: function (data: any) {
         if (data.section === 'body' && data.column.index === 0) {
           const image = productArray[data.row.index]?.image
