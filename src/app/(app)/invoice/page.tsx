@@ -1,5 +1,6 @@
 'use client'
 
+import { Badge } from '@/collections/Badge'
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 import { useEffect, useState } from 'react'
@@ -19,8 +20,10 @@ const getBase64Image = async (imgUrl) => {
 
 export default function Page() {
   const [tabledata, setTabledata] = useState([])
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  async function demo(tabledata) {
+  async function downloadinvoice(tabledata) {
     if (!tabledata?.Products?.length) {
       alert('No products to display!')
       return
@@ -105,19 +108,107 @@ export default function Page() {
   }, [])
 
   const getOrderInfo = async () => {
-    let data = await fetch('/api/orders/67a097dd0e7a4ad5ae34998b')
-    let response = await data.json()
-    setTabledata(response)
-    console.log('order details : ', JSON.stringify(response))
+    try {
+      let data = await fetch('/api/orders/67a097dd0e7a4ad5ae34998b')
+      let response = await data.json()
+      setTabledata(response)
+      console.log('order details : ', JSON.stringify(response))
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    } finally {
+      setLoading(false)
+    }
   }
+
+  // return (
+  //   <>
+  //     <main style={{ backgroundColor: 'gray' }}>
+  //       <div>
+  //         <button onClick={() => demo(tabledata)}>Download PDF</button>
+  //       </div>
+  //     </main>
+  //   </>
+  // )
+
+  // const productArrayData =
+  //   tabledata?.Products?.map((item) => [
+  //     <img src="${item.image}" />,
+  //     item.weight,
+  //     item.price,
+  //     item.quantity,
+  //   ]) || []
 
   return (
     <>
-      <main style={{ backgroundColor: 'gray' }}>
-        <div>
-          <button onClick={() => demo(tabledata)}>Download PDF</button>
-        </div>
+      <main>
+        <article>
+          <Badge />
+          <p>
+            <button onClick={() => downloadinvoice(tabledata)}>⬇️ Download PDF</button>
+          </p>
+
+          <div style={{ padding: '20px' }}>
+            {loading ? (
+              <p>Loading data...</p>
+            ) : (
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#f2f2f2' }}>
+                    <th style={thStyle}>Icon</th>
+                    <th style={thStyle}>Name</th>
+                    <th style={thStyle}>Weight</th>
+                    <th style={thStyle}>Quantity</th>
+                    <th style={thStyle}>Price</th>
+                    <th style={thStyle}>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tabledata?.Products?.map((item) => (
+                    <tr key={item.id} style={{ textAlign: 'center' }}>
+                      <td style={tdStyle}>
+                        <img width={100} src={item.image}></img>
+                      </td>
+                      <td style={tdStyle}>{item.title}</td>
+                      <td style={tdStyle}>{item.weight}</td>
+
+                      <td style={tdStyle}>{item.price}</td>
+                      <td style={tdStyle}>{item.quantity}</td>
+
+                      <td style={tdStyle}>{item.price * item.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+
+                <thead>
+                  <tr style={{ backgroundColor: '#f2f2f2' }}>
+                    <th style={thStyle}> </th>
+                    <th style={thStyle}> </th>
+                    <th style={thStyle}> </th>
+                    <th style={thStyle}> </th>
+                    <th style={thStyle}>Total</th>
+                    <th style={thStyle}>
+                      {tabledata?.currency} {tabledata?.orderAmount}
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            )}
+          </div>
+        </article>
       </main>
     </>
   )
+}
+
+// 🎨 Inline Styles for Table
+const thStyle = {
+  border: '1px solid #ddd',
+  padding: '8px',
+  backgroundColor: '#4CAF50',
+  color: 'white',
+}
+
+const tdStyle = {
+  border: '1px solid #ddd',
+  padding: '8px',
 }
