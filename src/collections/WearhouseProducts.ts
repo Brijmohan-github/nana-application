@@ -201,9 +201,8 @@ export const WearhouseProducts: CollectionConfig = {
       method: 'get',
       handler: async (req) => {
         const { payload } = req
-        await addLocalesToRequestFromData(req, payload)
-        // you now can access req.locale & req.fallbackLocale
-        return Response.json({ message: 'success' })
+        // await addLocalesToRequestFromData(req, payload)
+        return Response.json({ message: 'wrong action' })
       },
     },
   ],
@@ -245,7 +244,7 @@ async function addLocalesToRequestFromData(req: PayloadRequest, payload: any) {
     // Fetch all products with their category IDs
     const productDetails = await payload.find({
       collection: 'products',
-      // where: { id: { equals: '677fccf3591b0f61aa576ffc' } },
+      // where: { id: { equals: '67966ca559fe1cfea93c9151' } },
       limit: 1000,
       depth: 0,
     })
@@ -263,11 +262,11 @@ async function addLocalesToRequestFromData(req: PayloadRequest, payload: any) {
       //  if (!categoryid) continue // Skip if categoryid does not exist
 
       // Update the warehouseproducts where productId matches
-      // await payload.update({
-      //   collection: 'warehouseproducts',
-      //   where: { productId: { equals: productId } },
-      //   data: { categoryid },
-      // })
+      await payload.update({
+        collection: 'wearhouseproducts',
+        where: { products: { equals: productId } },
+        data: { categoryid: category },
+      })
 
       console.log('🚀 Brij  ~  file: WearhouseProducts.ts:270 ~:', productId, category, title)
     }
