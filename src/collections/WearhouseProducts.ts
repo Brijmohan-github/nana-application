@@ -122,16 +122,16 @@ export const WearhouseProducts: CollectionConfig = {
 
           if (categoryId) {
             // Fetch products that belong to the given category
-            const productsInCategory = await payload.find({
-              collection: 'products',
-              where: {
-                category: { equals: objectCatId },
-              },
-              limit: 100, // Adjust limit as needed
-              depth: 1,
-            })
+            // const productsInCategory = await payload.find({
+            //   collection: 'products',
+            //   where: {
+            //     category: { equals: objectCatId },
+            //   },
+            //   limit: 100, // Adjust limit as needed
+            //   depth: 1,
+            // })
 
-            const productIds = productsInCategory.docs.map((p: any) => p.id) // Extract product IDs
+            // const productIds = productsInCategory.docs.map((p: any) => p.id) // Extract product IDs
 
             //  console.log('Filtered Product IDs:', productIds)
 
@@ -140,9 +140,10 @@ export const WearhouseProducts: CollectionConfig = {
               collection: 'wearhouseproducts',
               where: {
                 wearhouseId: { equals: objectId },
-                products: { in: productIds }, // Match any product in the list
+                categoryid: { equals: objectCatId },
+                // products: { in: productIds }, // Match any product in the list
               },
-              limit: 100,
+              limit: 200,
               sort: '-rank',
               depth: 2,
               debug: true,
@@ -154,14 +155,14 @@ export const WearhouseProducts: CollectionConfig = {
               where: {
                 wearhouseId: { equals: objectId },
               },
-              limit: 100,
+              limit: 200,
               sort: '-rank',
               depth: 2,
               debug: true,
             })
           }
 
-          // console.log('WearhouseProducts - Product Results:', results)
+          console.log('WearhouseProducts - Product Results:', results)
 
           // Ensure that results and docs are properly checked
           //  if (results && results?.docs && Array.isArray(results?.docs)) {
@@ -244,7 +245,8 @@ async function addLocalesToRequestFromData(req: PayloadRequest, payload: any) {
     // Fetch all products with their category IDs
     const productDetails = await payload.find({
       collection: 'products',
-      // where: { id: { equals: '67966ca559fe1cfea93c9151' } },
+      //where: { id: { equals: '679601da370a005539b72f45' } },
+      where: { categoryId: { exist: false } },
       limit: 1000,
       depth: 0,
     })
