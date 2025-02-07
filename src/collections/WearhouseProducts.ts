@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, PayloadRequest } from 'payload'
 import { ObjectId } from 'mongodb' // Import ObjectId from MongoDB
 
 export const WearhouseProducts: CollectionConfig = {
@@ -196,6 +196,16 @@ export const WearhouseProducts: CollectionConfig = {
         )
       },
     },
+    {
+      path: '/update-warehouse-category',
+      method: 'get',
+      handler: async (req) => {
+        const { payload } = req
+        await addLocalesToRequestFromData(req, payload)
+        // you now can access req.locale & req.fallbackLocale
+        return Response.json({ message: 'success' })
+      },
+    },
   ],
 
   hooks: {
@@ -229,4 +239,42 @@ export const WearhouseProducts: CollectionConfig = {
       },
     ],
   },
+}
+async function addLocalesToRequestFromData(req: PayloadRequest, payload: any) {
+  try {
+    // Fetch all products with their category IDs
+    const productDetails = await payload.find({
+      collection: 'products',
+      // where: { id: { equals: '677fccf3591b0f61aa576ffc' } },
+      limit: 1000,
+      depth: 0,
+    })
+    // console.log('🚀 Brij  ~  file: WearhouseProducts.ts:270 ~:productDetails', productDetails)
+
+    // Check if products are available
+    if (!productDetails.docs || productDetails.docs.length === 0) {
+      throw new Error('No products found.')
+    }
+
+    // Iterate over each product to update categoryId in warehouseproducts
+    for (const product of productDetails.docs) {
+      const { id: productId, category, title } = product
+
+      //  if (!categoryid) continue // Skip if categoryid does not exist
+
+      // Update the warehouseproducts where productId matches
+      // await payload.update({
+      //   collection: 'warehouseproducts',
+      //   where: { productId: { equals: productId } },
+      //   data: { categoryid },
+      // })
+
+      console.log('🚀 Brij  ~  file: WearhouseProducts.ts:270 ~:', productId, category, title)
+    }
+
+    console.log('Category IDs updated successfully in warehouseproducts.')
+  } catch (error) {
+    console.error('Error updating category IDs:', error)
+    throw new Error('Failed to update category IDs.')
+  }
 }
