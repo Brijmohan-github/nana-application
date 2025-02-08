@@ -128,7 +128,7 @@ export interface Wearhouse {
   shipingcharge?: string | null;
   lat?: string | null;
   long?: string | null;
-  country?: ('Saudi Arabia' | 'India') | null;
+  country?: ('SA' | 'IN') | null;
   pincode?: string | null;
   currency?: ('SAR' | 'INR' | 'AED') | null;
   min_amount?: number | null;
