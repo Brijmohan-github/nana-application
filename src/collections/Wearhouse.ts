@@ -61,7 +61,7 @@ export const Wearhouse: CollectionConfig = {
     {
       name: 'country',
       type: 'select',
-      options: ['Saudi Arabia', 'India'],
+      options: ['SA', 'IN'],
       admin: { position: 'sidebar' },
     },
     {
