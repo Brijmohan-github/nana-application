@@ -73,6 +73,8 @@ export const WearhouseProducts: CollectionConfig = {
           const { payload } = req // Access payload instance
           const warehouseId = req.query.warehouse
           const categoryId = req.query.category
+          const limit = req.query.limit || 200
+          const page = req.query.page || 1
 
           console.log('req query param: ', warehouseId, categoryId)
 
@@ -92,49 +94,10 @@ export const WearhouseProducts: CollectionConfig = {
           const objectId = new ObjectId(warehouseId)
           const objectCatId = new ObjectId(categoryId)
 
-          // Query the database for products matching the warehouse ID
-          // if (categoryId) {
-          //   results = await payload.find({
-          //     collection: 'wearhouseproducts',
-          //     where: {
-          //       wearhouseId: { equals: objectId },
-          //       products: {
-          //         some: {
-          //           category: { equals: objectCatId },
-          //         },
-          //       },
-          //     },
-          //     limit: 3,
-          //     sort: '-rank',
-          //     depth: 2, // Ensures relations are properly resolved
-          //     debug: true,
-          //   })
-          // } else {
-          // results =  await payload.find({
-          //   collection: 'wearhouseproducts',
-          //   where: {
-          //     wearhouseId: { equals: objectId },
-          //   },
-          //   limit: 0,
-          //   sort: '-rank',
-          // })
-          // }
+          
 
           if (categoryId) {
-            // Fetch products that belong to the given category
-            // const productsInCategory = await payload.find({
-            //   collection: 'products',
-            //   where: {
-            //     category: { equals: objectCatId },
-            //   },
-            //   limit: 100, // Adjust limit as needed
-            //   depth: 1,
-            // })
-
-            // const productIds = productsInCategory.docs.map((p: any) => p.id) // Extract product IDs
-
-            //  console.log('Filtered Product IDs:', productIds)
-
+            
             // Use product IDs to filter wearhouseproducts
             results = await payload.find({
               collection: 'wearhouseproducts',
@@ -143,10 +106,12 @@ export const WearhouseProducts: CollectionConfig = {
                 categoryid: { equals: objectCatId },
                 // products: { in: productIds }, // Match any product in the list
               },
-              limit: 200,
+              limit: limit,
+              page: page,
               sort: '-rank',
               depth: 2,
               debug: true,
+              fields: ['products', 'id'],
             })
           } else {
             // Original query without category filtering
@@ -155,10 +120,12 @@ export const WearhouseProducts: CollectionConfig = {
               where: {
                 wearhouseId: { equals: objectId },
               },
-              limit: 200,
+              limit: limit,
+              page: page,
               sort: '-rank',
               depth: 2,
               debug: true,
+              fields: ['products', 'id'],
             })
           }
 
