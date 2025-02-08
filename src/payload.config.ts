@@ -15,6 +15,7 @@ import { Wearhouse } from './collections/Wearhouse'
 import { WearhouseProducts } from './collections/WearhouseProducts'
 import { Orders } from './collections/Orders'
 import { Categories } from './collections/Categories'
+import { ApplicationSetting } from './collections/ApplicationSetting'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,7 +31,16 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Categories, Products, Wearhouse, WearhouseProducts, Orders, Users, Media],
+  collections: [
+    Categories,
+    Products,
+    Wearhouse,
+    WearhouseProducts,
+    ApplicationSetting,
+    Orders,
+    Users,
+    Media,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

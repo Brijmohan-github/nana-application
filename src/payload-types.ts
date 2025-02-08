@@ -15,6 +15,7 @@ export interface Config {
     products: Product;
     wearhouse: Wearhouse;
     wearhouseproducts: Wearhouseproduct;
+    ApplicationSetting: ApplicationSetting;
     orders: Order;
     users: User;
     media: Media;
@@ -28,6 +29,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     wearhouse: WearhouseSelect<false> | WearhouseSelect<true>;
     wearhouseproducts: WearhouseproductsSelect<false> | WearhouseproductsSelect<true>;
+    ApplicationSetting: ApplicationSettingSelect<false> | ApplicationSettingSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -157,6 +159,19 @@ export interface Wearhouseproduct {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationSetting".
+ */
+export interface ApplicationSetting {
+  id: string;
+  title?: string | null;
+  offermessage?: string | null;
+  Description?: string | null;
+  image?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -231,6 +246,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'wearhouseproducts';
         value: string | Wearhouseproduct;
+      } | null)
+    | ({
+        relationTo: 'ApplicationSetting';
+        value: string | ApplicationSetting;
       } | null)
     | ({
         relationTo: 'orders';
@@ -348,6 +367,18 @@ export interface WearhouseproductsSelect<T extends boolean = true> {
   currency?: T;
   rank?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationSetting_select".
+ */
+export interface ApplicationSettingSelect<T extends boolean = true> {
+  title?: T;
+  offermessage?: T;
+  Description?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
