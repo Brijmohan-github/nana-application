@@ -73,10 +73,10 @@ export const WearhouseProducts: CollectionConfig = {
           const { payload } = req // Access payload instance
           const warehouseId = req.query.warehouse
           const categoryId = req.query.category
-          const limit = req.query.limit || 200
-          const page = req.query.page || 1
+          const limit = parseInt(req.query?.limit as string) || 200
+          const page = parseInt(req.query?.page as string) || 1
 
-          console.log('req query param: ', warehouseId, categoryId)
+          console.log('req query param: ', warehouseId, categoryId, page, limit)
 
           // Ensure warehouseId is provided
           if (!warehouseId) {
@@ -94,10 +94,7 @@ export const WearhouseProducts: CollectionConfig = {
           const objectId = new ObjectId(warehouseId)
           const objectCatId = new ObjectId(categoryId)
 
-          
-
           if (categoryId) {
-            
             // Use product IDs to filter wearhouseproducts
             results = await payload.find({
               collection: 'wearhouseproducts',
@@ -129,7 +126,7 @@ export const WearhouseProducts: CollectionConfig = {
             })
           }
 
-          console.log('WearhouseProducts - Product Results:', results)
+          // console.log('WearhouseProducts - Product Results:', results)
 
           // Ensure that results and docs are properly checked
           //  if (results && results?.docs && Array.isArray(results?.docs)) {
