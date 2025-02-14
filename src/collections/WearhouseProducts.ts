@@ -105,7 +105,7 @@ export const WearhouseProducts: CollectionConfig = {
               },
               limit: limit,
               page: page,
-              sort: '-rank',
+              sort: ['-rank', '_id'],
               depth: 2,
               debug: true,
               fields: ['products', 'id'],
@@ -119,14 +119,14 @@ export const WearhouseProducts: CollectionConfig = {
               },
               limit: limit,
               page: page,
-              sort: '-rank',
+              sort: ['-rank', '_id'],
               depth: 2,
               debug: true,
               fields: ['products', 'id'],
             })
           }
 
-          // console.log('WearhouseProducts - Product Results:', results)
+          //   console.log('WearhouseProducts - Product Results:', results)
 
           // Ensure that results and docs are properly checked
           //  if (results && results?.docs && Array.isArray(results?.docs)) {
