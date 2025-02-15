@@ -26,6 +26,12 @@ export const Users: CollectionConfig = {
       required: false,
     },
     {
+      name: 'useremail',
+      label: 'User Email (to keep original email)',
+      type: 'email',
+      required: false,
+    },
+    {
       label: 'Address',
       name: 'address',
       type: 'text',

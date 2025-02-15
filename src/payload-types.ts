@@ -207,6 +207,7 @@ export interface User {
   id: string;
   fullName?: string | null;
   mobile?: number | null;
+  useremail?: string | null;
   address?: string | null;
   pincode?: string | null;
   Photo?: (string | null) | Media;
@@ -409,6 +410,7 @@ export interface OrdersSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   fullName?: T;
   mobile?: T;
+  useremail?: T;
   address?: T;
   pincode?: T;
   Photo?: T;
