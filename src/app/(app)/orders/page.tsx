@@ -38,18 +38,18 @@ export default function Page() {
     }
   }
 
-  function formatDate(dateString: string | number | Date) {
-    const options = {
+  function formatDate(dateString: any) {
+    const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+      month: 'short', // 'Feb'
+      day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
       hour12: true,
     }
-    return new Date(dateString)
-    // const date = new Date(dateString)
-    // return date.toLocaleString('en-GB', options) // UK locale to get date format as '11-Feb-2025, 11:00 AM'
+
+    const date = new Date(dateString)
+    return date.toLocaleString('en-GB', options).replace(',', '')
   }
 
   return (
