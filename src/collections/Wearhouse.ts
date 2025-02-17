@@ -1,11 +1,13 @@
+import { hasPermission } from '@/access/hasPermission'
 import type { CollectionConfig } from 'payload'
 
 export const Wearhouse: CollectionConfig = {
   slug: 'wearhouse',
   access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
+    read: hasPermission,
+    create: hasPermission,
+    update: hasPermission,
+    delete: hasPermission,
   },
   admin: {
     useAsTitle: 'name',

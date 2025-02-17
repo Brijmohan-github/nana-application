@@ -1,12 +1,14 @@
 import type { CollectionConfig, PayloadRequest } from 'payload'
 import { ObjectId } from 'mongodb' // Import ObjectId from MongoDB
+import { hasPermission } from '@/access/hasPermission'
 
 export const WearhouseProducts: CollectionConfig = {
   slug: 'wearhouseproducts',
   access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
+    read: hasPermission,
+    create: hasPermission,
+    update: hasPermission,
+    delete: hasPermission,
   },
   admin: {
     useAsTitle: 'price',

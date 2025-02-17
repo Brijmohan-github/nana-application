@@ -205,6 +205,8 @@ export interface Order {
  */
 export interface User {
   id: string;
+  role: 'admin' | 'warehouse' | 'customer';
+  warehouseid?: (string | null) | Wearhouse;
   fullName?: string | null;
   mobile?: number | null;
   useremail?: string | null;
@@ -408,6 +410,8 @@ export interface OrdersSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
+  warehouseid?: T;
   fullName?: T;
   mobile?: T;
   useremail?: T;

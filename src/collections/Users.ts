@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { addDataAndFileToRequest } from '@payloadcms/next/utilities'
+import { hasPermission } from '@/access/hasPermission'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -10,9 +11,36 @@ export const Users: CollectionConfig = {
     useAPIKey: true,
   },
   access: {
-    update: () => true,
+    create: hasPermission,
+    update: hasPermission,
+    read: hasPermission,
+    delete: hasPermission,
   },
   fields: [
+    {
+      name: 'role',
+      type: 'select',
+      saveToJWT: true,
+      hasMany: false,
+      admin: {
+        position: 'sidebar',
+      },
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Warehouse', value: 'warehouse' },
+        { label: 'Customer', value: 'customer' },
+      ],
+      required: true,
+      defaultValue: 'customer',
+    },
+    {
+      name: 'warehouseid',
+      type: 'relationship',
+      relationTo: 'wearhouse',
+      admin: {
+        position: 'sidebar',
+      },
+    },
     {
       label: 'Full Name',
       name: 'fullName',
@@ -40,6 +68,9 @@ export const Users: CollectionConfig = {
       label: 'Pin code',
       name: 'pincode',
       type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'Photo',

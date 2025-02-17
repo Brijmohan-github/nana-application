@@ -1,12 +1,14 @@
+import { hasPermission } from '@/access/hasPermission'
 import type { CollectionConfig } from 'payload'
 
 export const ApplicationSetting: CollectionConfig = {
   slug: 'ApplicationSetting',
 
   access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
+    create: hasPermission,
+    update: hasPermission,
+    read: hasPermission,
+    delete: hasPermission,
   },
   admin: {
     useAsTitle: 'title',
