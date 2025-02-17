@@ -15,25 +15,45 @@ const Page = async () => {
       <main>
         <article>
           <Badge />
-          <p>
-            <Link href="/admin">Go to handle admin site</Link>
-          </p>
+
           <p>
             {' '}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            NANA App – Fresh Groceries at Your Doorstep One-Stop Online Grocery Store NANA App makes
+            grocery shopping effortless with fresh fruits, vegetables, and daily essentials
+            delivered straight to your home. Enjoy a hassle-free experience with quality products
+            and reliable service. Why Choose NANA? <br />✅ Fresh & Quality Products – Handpicked
+            fruits, vegetables, and groceries delivered with care. <br />✅ Convenient Home Delivery
+            – Get your essentials delivered to your doorstep, saving you time and effort. <br />✅
+            Cash on Delivery (COD) – Pay securely at the time of delivery. <br />✅ Fast & Reliable
+            Service <br />– We currently serve select locations with quick and efficient delivery.
           </p>
+
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            {' '}
+            What You Can Buy? <br />
+            🛒 Fruits & Vegetables – Farm-fresh, organic, and seasonal produce. <br />
+            🛒 Groceries & Essentials – Flour, rice, lentils, dairy, spices, and more. <br />
+            🛒 Ready-to-Eat & Packaged Food – Snacks, beverages, frozen food, and instant meals.
+          </p>
+
+          <p>
+            {' '}
+            How It Works? <br />
+            1️⃣ Browse & Select – Explore a wide range of fresh products.
+            <br /> 2️⃣ Place Your Order – Add items to your cart and confirm your order. <br />
+            3️⃣ Quick Delivery – Sit back while we deliver to your doorstep. <br />
+            4️⃣ Pay on Delivery <br />– Enjoy the flexibility of COD payment. 📍 Currently available
+            in limited areas – expanding soon!
+            <br />
+            <br />
+            <Link href="https://play.google.com/store/apps/details?id=com.nanastore">
+              🚀 Download the NANA App Now and experience fresh, fast, and convenient grocery
+              shopping!
+            </Link>
+          </p>
+
+          <p>
+            <Link href="/admin">Amin</Link>
           </p>
         </article>
       </main>
