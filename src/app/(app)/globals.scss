@@ -5,11 +5,11 @@
 html {
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #f8f4ee;
 }
 
 body {
-  color: #ffffff;
+  color: #000;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@ main {
   min-height: 100vh;
   max-width: 800px;
   margin: 0 auto;
-  padding-block: 80px;
+  padding-block: 10px;
   border-inline-width: 1px;
   border-inline-style: solid;
   border-image: linear-gradient(180deg, #ffffff00, #ffffff00, #ffffff1a, #ffffff00) 1;
@@ -42,7 +42,7 @@ article {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 60px 80px;
+  padding: 5px 80px;
 
   @media screen and (max-width: 600px) {
     padding: 40px 40px;
@@ -53,7 +53,7 @@ article {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #fff;
+  color: #000;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -62,7 +62,7 @@ article {
 }
 
 h1 {
-  color: #ffffff;
+   color: #000;
   font-size: 4rem;
   font-weight: 600;
   line-height: normal;
@@ -75,15 +75,14 @@ h1 {
 }
 
 p {
-  color: #ffffff;
-  font-size: 16px;
+   color: #000;
   font-weight: 300;
   line-height: 28px;
   margin: 0;
 }
 
 a {
-  color: #ffffff;
+   color: #000;
   text-decoration: underline;
   transition: color 0.2s ease-out;
 

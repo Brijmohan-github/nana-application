@@ -7,14 +7,14 @@ export const Orders: CollectionConfig = {
     read: ({ req }) => {
       const { userid, createdAt } = req.query
 
-      console.log('🚀 Brij  ~  req:', req?.user?.role)
+      // console.log('🚀 Brij  ~  req:', req?.user?.role)
 
-      if (req?.user?.role == 'warehouse') {
-        const wid = req?.user?.warehouseid?.id
-        return {
-          ...(wid ? { warehouseid: { equals: wid } } : {}),
-        }
-      }
+      // if (req?.user?.role == 'warehouse') {
+      //   const wid = req?.user?.warehouseid?.id
+      //   return {
+      //     ...(wid ? { warehouseid: { equals: wid } } : {}),
+      //   }
+      // }
 
       return {
         ...(userid ? { OrderBy: { equals: userid } } : {}),

@@ -47,17 +47,17 @@ const Page = async () => {
             <br />
             <br />
             <Link href="https://play.google.com/store/apps/details?id=com.nanastore">
-              🚀 Download the NANA App Now and experience fresh, fast, and convenient grocery
-              shopping!
-            </Link>
+              🚀 Download the NANA App Now
+            </Link>{' '}
+            and experience fresh, fast, and convenient grocery shopping!
           </p>
 
           <p>
-            <Link href="/admin">Amin</Link>
+            <Link href="/admin">Admin</Link>
           </p>
         </article>
       </main>
-      <Background />
+      {/* <Background /> */}
     </>
   )
 }
