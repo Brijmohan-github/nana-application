@@ -47,9 +47,9 @@ export default function Page() {
       minute: '2-digit',
       hour12: true,
     }
-
-    const date = new Date(dateString)
-    return date.toLocaleString('en-GB', options) // UK locale to get date format as '11-Feb-2025, 11:00 AM'
+    return new Date(dateString)
+    // const date = new Date(dateString)
+    // return date.toLocaleString('en-GB', options) // UK locale to get date format as '11-Feb-2025, 11:00 AM'
   }
 
   return (
