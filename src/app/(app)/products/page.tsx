@@ -5,8 +5,17 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { BASE_URL, END_POINTS, IMG_URL } from '@/config'
 
+interface ProductItem {
+  id: string
+  products: { title: string; imageone?: { url: string } }
+  originalprice: number
+  price: number
+  rank: number
+  status: string
+}
+
 export default function Page() {
-  const [tabledata, setTabledata] = useState([])
+  const [tabledata, setTabledata] = useState<ProductItem[]>([])
   const [id, setWid] = useState('')
   const [loading, setLoading] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
@@ -94,7 +103,7 @@ export default function Page() {
                 </thead>
                 <tbody>
                   {tabledata?.map((item) => (
-                    <tr style={{ textAlign: 'center' }}>
+                    <tr key={`uniqkeu-${item?.id}`} style={{ textAlign: 'center' }}>
                       <td style={tdStyle}>
                         <img
                           width={50}
@@ -132,7 +141,15 @@ export default function Page() {
   )
 }
 
-function EditPopup({ product, onClose, onSuccessResult }) {
+function EditPopup({
+  product,
+  onClose,
+  onSuccessResult,
+}: {
+  product: ProductItem
+  onClose: () => void
+  onSuccessResult: (result: ProductItem) => void
+}) {
   // console.log('🚀 Brij  ~  EditPopup ~  product:', product)
 
   const [originalprice, setOriginalPrice] = useState(product.originalprice)
@@ -140,7 +157,7 @@ function EditPopup({ product, onClose, onSuccessResult }) {
   const [rank, setRank] = useState(product.rank)
   const [id, setId] = useState(product.id)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('Updated Values:', { id, originalprice, price, rank })
 
@@ -154,7 +171,7 @@ function EditPopup({ product, onClose, onSuccessResult }) {
       rank: rank,
     })
 
-    const requestOptions = {
+    const requestOptions: RequestInit = {
       method: 'PATCH',
       headers: myHeaders,
       body: raw,
@@ -163,10 +180,18 @@ function EditPopup({ product, onClose, onSuccessResult }) {
 
     fetch(`${BASE_URL}${END_POINTS.WAREHOUSE_PRODUCT_UPDATE}${id}`, requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        console.log(result)
+      .then((data) => {
+        console.log(data)
         //getOrderInfo();
-        onSuccessResult(result)
+        console.log('Received data type:', typeof data)
+        console.log('Received data:', data)
+
+        if (typeof data === 'object') {
+          // ✅ Ensure it's an object
+          onSuccessResult(data)
+        } else {
+          console.error('Unexpected API response format:', data)
+        }
       })
       .catch((error) => console.error(error))
 
@@ -182,22 +207,22 @@ function EditPopup({ product, onClose, onSuccessResult }) {
           <input
             type="hidden"
             value={id}
-            // onChange={(e) => setId(e.target.value)}
+            // onChange={(e) => setId(Number(e.target.value))}
           />
           <input
             type="number"
             value={originalprice}
-            onChange={(e) => setOriginalPrice(e.target.value)}
+            onChange={(e) => setOriginalPrice(Number(e.target.value))}
           />
 
           <div style={labelstyle}>
             <label style={labelstyle}>Price:</label>
-            <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+            <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
           </div>
 
           <div style={labelstyle}>
             <label style={labelstyle}>Rank:</label>
-            <input type="number" value={rank} onChange={(e) => setRank(e.target.value)} />
+            <input type="number" value={rank} onChange={(e) => setRank(Number(e.target.value))} />
           </div>
 
           <div style={labelstyle}>
@@ -215,9 +240,14 @@ function EditPopup({ product, onClose, onSuccessResult }) {
   )
 }
 
-const thStyle = { border: '1px solid #ddd', padding: '8px', backgroundColor: '#FFF', color: '#000' }
-const tdStyle = { border: '1px solid #ddd', padding: '8px' }
-const popupStyle = {
+const thStyle: React.CSSProperties = {
+  border: '1px solid #ddd',
+  padding: '8px',
+  backgroundColor: '#FFF',
+  color: '#000',
+}
+const tdStyle: React.CSSProperties = { border: '1px solid #ddd', padding: '8px' }
+const popupStyle: React.CSSProperties = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -228,11 +258,11 @@ const popupStyle = {
   alignItems: 'center',
   justifyContent: 'center',
 }
-const popupContentStyle = {
+const popupContentStyle: React.CSSProperties = {
   backgroundColor: '#FFF',
   padding: '20px',
   borderRadius: '8px',
   width: '400px',
   textAlign: 'center',
 }
-const labelstyle = { padding: 10 }
+const labelstyle: React.CSSProperties = { padding: 10 }
