@@ -24,6 +24,7 @@ export const WearhouseProducts: CollectionConfig = {
       name: 'categoryid',
       type: 'relationship',
       relationTo: 'categories',
+      index: true,
       admin: {
         hidden: true,
       },
@@ -78,7 +79,7 @@ export const WearhouseProducts: CollectionConfig = {
           const limit = parseInt(req.query?.limit as string) || 200
           const page = parseInt(req.query?.page as string) || 1
 
-          console.log('req query param: ', warehouseId, categoryId, page, limit)
+          console.log('🚀 Brij  ~ req query param: ', warehouseId, categoryId, page, limit)
 
           // Ensure warehouseId is provided
           if (!warehouseId) {
@@ -156,8 +157,10 @@ export const WearhouseProducts: CollectionConfig = {
           {
             headers: {
               'Access-Control-Allow-Origin': '*', // Adjust the origin as needed
-              'Access-Control-Allow-Methods': 'POST, OPTIONS',
+              // 'Access-Control-Allow-Origin': 'http://192.168.1.8:3000', // Adjust the origin as needed
+              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
               'Access-Control-Allow-Headers': 'Content-Type',
+              'Access-Control-Allow-Credentials': true,
             },
           },
         )

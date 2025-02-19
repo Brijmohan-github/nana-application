@@ -25,7 +25,7 @@ export default function Page() {
   const getOrderInfo = async () => {
     try {
       const data_reponse = await fetch(
-        '/api/wearhouseproducts/?depth=0&fallback-locale=null&limit=200&where[wearhouseId][equals]=' +
+        '/api/wearhouseproducts/?depth=2&fallback-locale=null&limit=200&where[wearhouseId][equals]=' +
           id,
       )
       const response = await data_reponse.json()
@@ -37,6 +37,7 @@ export default function Page() {
       setLoading(false)
     }
   }
+  const IMG_URL = 'https://nana-application.vercel.app'
 
   return (
     <>
@@ -63,9 +64,12 @@ export default function Page() {
                   {tabledata?.map((item: any) => (
                     <tr key={item.id} style={{ textAlign: 'center' }}>
                       <td style={tdStyle}>
-                        <img width={50} src={item.image || 'logo.jpeg'} />
+                        <img
+                          width={50}
+                          src={`${IMG_URL}${item.products.imageone.url}` || 'logo.jpeg'}
+                        />
                       </td>
-                      <td style={tdStyle}>{item.products}</td>
+                      <td style={tdStyle}>{item.products.title}</td>
                       <td style={tdStyle}>{item.originalprice}</td>
                       <td style={tdStyle}>{item.price}</td>
                       <td style={tdStyle}>{item.rank}</td>

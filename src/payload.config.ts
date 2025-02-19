@@ -25,6 +25,9 @@ export default buildConfig({
     locales: ['en', 'hi', 'ar'], // required
     defaultLocale: 'en', // required
   },
+  // cors: ['http://192.168.1.8:3000'],
+  // csrf: ['http://192.168.1.8:3000'],
+
   admin: {
     user: Users.slug,
     importMap: {
