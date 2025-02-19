@@ -41,6 +41,7 @@ export default function Page() {
   }
 
   const handleEditClick = (product) => {
+    setLoading(true)
     setSelectedProduct(product)
     setShowPopup(true)
   }
@@ -61,10 +62,23 @@ export default function Page() {
     <>
       <main>
         <article>
+          {' '}
           <Badge />
+          {loading && (
+            <p style={{ textAlign: 'center', padding: 20, border: 2, borderColor: 'red' }}>
+              {' '}
+              <img
+                src="Fidget-spinner.gif"
+                width="60"
+                height="60"
+                style={{ borderRadius: '16px' }}
+                alt="Logo"
+              />
+            </p>
+          )}
           <div style={{ padding: '20px' }}>
             {loading ? (
-              <p>Loading data...</p>
+              <p>{}</p>
             ) : (
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
