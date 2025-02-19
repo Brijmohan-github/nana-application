@@ -158,9 +158,9 @@ export const WearhouseProducts: CollectionConfig = {
             headers: {
               'Access-Control-Allow-Origin': '*', // Adjust the origin as needed
               // 'Access-Control-Allow-Origin': 'http://192.168.1.8:3000', // Adjust the origin as needed
+              //'Access-Control-Allow-Credentials': true,
               'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
               'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Allow-Credentials': true,
             },
           },
         )
