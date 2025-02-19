@@ -94,7 +94,7 @@ export default function Page() {
                 </thead>
                 <tbody>
                   {tabledata?.map((item) => (
-                    <tr id={item.id} key={item.id} style={{ textAlign: 'center' }}>
+                    <tr style={{ textAlign: 'center' }}>
                       <td style={tdStyle}>
                         <img
                           width={50}
