@@ -28,7 +28,7 @@ export default function Page() {
   const getOrderInfo = async () => {
     try {
       const data_response = await fetch(
-        `${BASE_URL}${END_POINTS.WAREHOUSE_PRODUCT_UPDATE}?depth=2&fallback-locale=null&limit=6&where[wearhouseId][equals]=${id}`,
+        `${BASE_URL}${END_POINTS.WAREHOUSE_PRODUCT_UPDATE}?depth=2&fallback-locale=null&limit=200&where[wearhouseId][equals]=${id}`,
       )
       const response = await data_response.json()
       setTabledata(response?.docs)
