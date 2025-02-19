@@ -40,13 +40,13 @@ export default function Page() {
     }
   }
 
-  const handleEditClick = (product) => {
+  const handleEditClick = (product: any) => {
     setLoading(true)
     setSelectedProduct(product)
     setShowPopup(true)
   }
 
-  const onSuccessResult = (result, item) => {
+  const onSuccessResult = (result: any) => {
     console.log('onSuccessResult fetching data:', result)
     setLoading(true)
     getOrderInfo()
@@ -166,7 +166,7 @@ function EditPopup({ product, onClose, onSuccessResult }) {
       .then((result) => {
         console.log(result)
         //getOrderInfo();
-        onSuccessResult(result, product)
+        onSuccessResult(result)
       })
       .catch((error) => console.error(error))
 
