@@ -50,16 +50,18 @@ export default function Page() {
   }
 
   const handleEditClick = (product: any) => {
-    setLoading(true)
+    // setLoading(true)
     setSelectedProduct(product)
     setShowPopup(true)
+    // setLoading(true)
   }
 
-  const onSuccessResult = (result: any) => {
-    console.log('onSuccessResult fetching data:', result)
-    setLoading(true)
-    getOrderInfo()
+  const onSuccessResult = () => {
+    // console.log('onSuccessResult fetching data:', result)
+    // setLoading(true)
     setLoading(false)
+    getOrderInfo()
+
     // setTabledata((tabledata) =>
     //   tabledata.map(
     //     (item) => (item.id === result.id ? result : item), // Replace matching row with updated data
@@ -148,7 +150,7 @@ function EditPopup({
 }: {
   product: ProductItem
   onClose: () => void
-  onSuccessResult: (result: ProductItem) => void
+  onSuccessResult: () => void
 }) {
   // console.log('🚀 Brij  ~  EditPopup ~  product:', product)
 
@@ -188,9 +190,10 @@ function EditPopup({
 
         if (typeof data === 'object') {
           // ✅ Ensure it's an object
-          onSuccessResult(data)
+          onSuccessResult()
         } else {
-          console.error('Unexpected API response format:', data)
+          //onSuccessResult(data)
+          //console.error('Unexpected API response format:', data)
         }
       })
       .catch((error) => console.error(error))
