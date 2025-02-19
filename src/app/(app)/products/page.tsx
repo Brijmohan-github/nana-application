@@ -17,6 +17,8 @@ interface ProductItem {
 export default function Page() {
   const [tabledata, setTabledata] = useState<ProductItem[]>([])
   const [id, setWid] = useState('')
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(200)
   const [loading, setLoading] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
@@ -26,6 +28,12 @@ export default function Page() {
   useEffect(() => {
     const Wid = searchParams.get('wid') || 0
     setWid(Wid.toString())
+
+    const p = searchParams.get('page') || 1
+    setPage(Number(p))
+
+    const l = searchParams.get('limit') || 200
+    setLimit(Number(l))
   }, [searchParams])
 
   useEffect(() => {
@@ -35,9 +43,10 @@ export default function Page() {
   }, [id])
 
   const getOrderInfo = async () => {
+    console.log('getOrderInfo fetching data:')
     try {
       const data_response = await fetch(
-        `${BASE_URL}${END_POINTS.WAREHOUSE_PRODUCT_UPDATE}?depth=2&fallback-locale=null&limit=200&where[wearhouseId][equals]=${id}`,
+        `${BASE_URL}${END_POINTS.WAREHOUSE_PRODUCT_UPDATE}?limit=${limit}&page=${page}&depth=2&fallback-locale=null&where[wearhouseId][equals]=${id}`,
       )
       const response = await data_response.json()
       setTabledata(response?.docs)
@@ -56,10 +65,9 @@ export default function Page() {
     // setLoading(true)
   }
 
-  const onSuccessResult = () => {
-    // console.log('onSuccessResult fetching data:', result)
-    // setLoading(true)
-    setLoading(false)
+  const onSuccessResult = (retn: string) => {
+    console.log('onSuccessResult fetching data:', retn)
+    setLoading(true)
     getOrderInfo()
 
     // setTabledata((tabledata) =>
@@ -135,7 +143,7 @@ export default function Page() {
       {showPopup && selectedProduct && (
         <EditPopup
           product={selectedProduct}
-          onSuccessResult={onSuccessResult}
+          onSuccessResult={(retn) => onSuccessResult(retn)}
           onClose={() => setShowPopup(false)}
         />
       )}
@@ -150,7 +158,7 @@ function EditPopup({
 }: {
   product: ProductItem
   onClose: () => void
-  onSuccessResult: () => void
+  onSuccessResult: (result: string) => void
 }) {
   // console.log('🚀 Brij  ~  EditPopup ~  product:', product)
 
@@ -190,9 +198,9 @@ function EditPopup({
 
         if (typeof data === 'object') {
           // ✅ Ensure it's an object
-          onSuccessResult()
+          onSuccessResult('succcess')
         } else {
-          //onSuccessResult(data)
+          onSuccessResult('data not in format')
           //console.error('Unexpected API response format:', data)
         }
       })
