@@ -1,5 +1,5 @@
-//export const BASE_URL = 'https://nana-application.vercel.app/';
-export const BASE_URL = 'http://192.168.1.4:3000/'
+export const BASE_URL = 'https://nana-application.vercel.app/'
+//export const BASE_URL = 'http://192.168.1.4:3000/'
 
 export const IMG_URL = 'https://nana-application.vercel.app'
 
