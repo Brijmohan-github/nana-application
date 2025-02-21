@@ -9,21 +9,21 @@ export const Orders: CollectionConfig = {
 
       // console.log('🚀 Brij  ~  req:', req?.user?.role)
 
-      // if (req?.user?.role == 'warehouse') {
-      //   const wid = req?.user?.warehouseid?.id
-      //   return {
-      //     ...(wid ? { warehouseid: { equals: wid } } : {}),
-      //   }
-      // }
+      if (req?.user?.role == 'warehouse') {
+        const wid = req?.user?.warehouseid
+        return {
+          ...(wid ? { warehouseid: { equals: wid } } : {}),
+        }
+      }
 
       return {
         ...(userid ? { OrderBy: { equals: userid } } : {}),
         ...(createdAt ? { createdAt: { greater_than_equal: createdAt } } : {}),
       }
     },
-    create: () => true,
-    update: () => true,
-    // delete: () => true,
+    create: hasPermission,
+    update: hasPermission,
+    delete: hasPermission,
   },
 
   admin: {

@@ -6,7 +6,7 @@ export const Media: CollectionConfig = {
   access: {
     create: hasPermission,
     update: hasPermission,
-    read: hasPermission,
+    read: () => true,
     delete: hasPermission,
   },
   fields: [
