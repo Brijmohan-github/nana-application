@@ -60,6 +60,7 @@ export const WearhouseProducts: CollectionConfig = {
       name: 'wearhouseId',
       type: 'relationship',
       relationTo: 'wearhouse',
+      index: true,
       required: true,
     },
     {
