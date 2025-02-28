@@ -135,6 +135,7 @@ export interface Wearhouse {
   pincode?: string | null;
   currency?: ('SAR' | 'INR' | 'AED') | null;
   min_amount?: number | null;
+  cashbackpre?: number | null;
   status?: ('active' | 'inactive') | null;
   category: (string | Category)[];
   logo?: (string | null) | Media;
@@ -354,6 +355,7 @@ export interface WearhouseSelect<T extends boolean = true> {
   pincode?: T;
   currency?: T;
   min_amount?: T;
+  cashbackpre?: T;
   status?: T;
   category?: T;
   logo?: T;
