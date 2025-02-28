@@ -89,6 +89,11 @@ export const Wearhouse: CollectionConfig = {
       type: 'number',
     },
     {
+      name: 'cashbackpre',
+      label: 'Cashback Precentage Amount',
+      type: 'number',
+    },
+    {
       name: 'status',
       type: 'select',
       options: ['active', 'inactive'],
