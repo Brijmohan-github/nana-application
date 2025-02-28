@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 import { addDataAndFileToRequest } from '@payloadcms/next/utilities'
 import { hasPermission } from '@/access/hasPermission'
 
+import { isAdmin } from '@/access/isAdmin'
+import { isReadUser } from '@/access/isReadUser'
+import { isEditUser } from '@/access/isEditUser'
+
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
@@ -11,10 +15,10 @@ export const Users: CollectionConfig = {
     useAPIKey: true,
   },
   access: {
-    create: hasPermission,
-    update: hasPermission,
-    read: hasPermission,
-    delete: hasPermission,
+    read: isReadUser,
+    create: isAdmin,
+    update: isAdmin, // isEditUser,
+    delete: isAdmin,
   },
   fields: [
     {

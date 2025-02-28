@@ -1,32 +1,16 @@
 import type { CollectionConfig, PayloadRequest } from 'payload'
 import { ObjectId } from 'mongodb' // Import ObjectId from MongoDB
 import { hasPermission } from '@/access/hasPermission'
+import { isAdmin } from '@/access/isAdmin'
+import { isReadWarehouseProducts } from '@/access/isReadWarehouseProducts'
 
 export const WearhouseProducts: CollectionConfig = {
   slug: 'wearhouseproducts',
   access: {
-    // read: hasPermission,
-    read: ({ req }) => {
-      const { userid, createdAt } = req.query
-
-      // console.log('🚀 Brij  ~  req:', req?.user?.role)
-
-      if (req?.user?.role == 'warehouse') {
-        return true
-        const wid = req?.user?.warehouseid
-        return {
-          ...(wid ? { warehouseid: { equals: wid } } : {}),
-        }
-      }
-
-      return {
-        ...(userid ? { OrderBy: { equals: userid } } : {}),
-        ...(createdAt ? { createdAt: { greater_than_equal: createdAt } } : {}),
-      }
-    },
-    create: hasPermission,
-    update: hasPermission,
-    delete: hasPermission,
+    read: isReadWarehouseProducts,
+    create: isReadWarehouseProducts,
+    update: isReadWarehouseProducts,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'price',

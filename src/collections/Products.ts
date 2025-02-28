@@ -1,31 +1,14 @@
 import { hasPermission } from '@/access/hasPermission'
+import { isAdmin } from '@/access/isAdmin'
 import type { CollectionConfig } from 'payload'
 
 export const Products: CollectionConfig = {
   slug: 'products',
   access: {
-    read: ({ req }) => {
-      const { userid, createdAt } = req.query
-      return true
-      // console.log('🚀 Brij  ~  req:', req?.user?.role)
-
-      if (req?.user?.role == 'warehouse') {
-        return true
-        const wid = req?.user?.warehouseid
-        return {
-          ...(wid ? { warehouseid: { equals: wid } } : {}),
-        }
-      }
-
-      return {
-        ...(userid ? { OrderBy: { equals: userid } } : {}),
-        ...(createdAt ? { createdAt: { greater_than_equal: createdAt } } : {}),
-      }
-    },
-    create: hasPermission,
-    update: hasPermission,
-    // read: hasPermission,
-    delete: hasPermission,
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'title',
