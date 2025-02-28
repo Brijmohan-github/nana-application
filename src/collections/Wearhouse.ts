@@ -43,6 +43,11 @@ export const Wearhouse: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     {
+      name: 'bannermessage',
+      label: 'Banner message',
+      type: 'text',
+    },
+    {
       name: 'shipingcharge',
       type: 'text',
       admin: { position: 'sidebar' },

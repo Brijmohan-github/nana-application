@@ -127,6 +127,7 @@ export interface Wearhouse {
   landmark?: string | null;
   location?: string | null;
   mobile?: string | null;
+  bannermessage?: string | null;
   shipingcharge?: string | null;
   lat?: string | null;
   long?: string | null;
@@ -212,6 +213,7 @@ export interface User {
   useremail?: string | null;
   address?: string | null;
   pincode?: string | null;
+  cashback?: number | null;
   Photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -344,6 +346,7 @@ export interface WearhouseSelect<T extends boolean = true> {
   landmark?: T;
   location?: T;
   mobile?: T;
+  bannermessage?: T;
   shipingcharge?: T;
   lat?: T;
   long?: T;
@@ -417,6 +420,7 @@ export interface UsersSelect<T extends boolean = true> {
   useremail?: T;
   address?: T;
   pincode?: T;
+  cashback?: T;
   Photo?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -73,6 +73,15 @@ export const Users: CollectionConfig = {
       },
     },
     {
+      label: 'Cash back',
+      name: 'cashback',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+
+      },
+    },
+    {
       name: 'Photo',
       type: 'upload',
       relationTo: 'media',
