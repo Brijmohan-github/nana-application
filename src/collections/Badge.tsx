@@ -1,4 +1,4 @@
-export const Badge = ({ warehousename }) => {
+export const Badge = ({ warehousename }: any) => {
   return (
     <span className="badge">
       {/* <svg
