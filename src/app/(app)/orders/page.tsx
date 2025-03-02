@@ -9,12 +9,21 @@ export default function Page() {
   const [tabledata, setTabledata] = useState([])
   const [id, setWid] = useState('')
   const [loading, setLoading] = useState(true)
+  const [warehousename, setWarehousename] = useState('')
 
   const searchParams = useSearchParams()
 
   useEffect(() => {
     const Wid = searchParams.get('wid') || 0
     setWid(Wid.toString())
+
+    if (id == '67b8acb1b0bbf82f075aff65') {
+      setWarehousename('Beri Khurd')
+    } else if (id == '6798dacd2d646fbcc4ec16a4') {
+      setWarehousename('Kasli')
+    } else if (id == '6795f9cb370a005539b72e14') {
+      setWarehousename('Jhotwara')
+    }
   }, [searchParams])
 
   useEffect(() => {
@@ -56,8 +65,9 @@ export default function Page() {
     <>
       <main>
         <article>
-          <Badge />
-
+          <view style={{ flexDirection: 'row' }}>
+            <Badge warehousename={warehousename} />{' '}
+          </view>
           <div style={{ padding: '20px' }}>
             {loading ? (
               <p>Loading data...</p>

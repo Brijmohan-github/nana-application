@@ -1,4 +1,4 @@
-export const Badge = () => {
+export const Badge = ({ warehousename }) => {
   return (
     <span className="badge">
       {/* <svg
@@ -16,7 +16,7 @@ export const Badge = () => {
       </svg>
       Beta */}
       <img src="logo.jpeg" width="60" height="60" style={{ borderRadius: '16px' }} alt="Logo" />{' '}
-      <h1> Nana </h1>
+      <h1> Nana </h1> <view style={{ fontSize: 20, color: 'blue' }}>{warehousename}</view>
     </span>
   )
 }
