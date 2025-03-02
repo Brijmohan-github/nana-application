@@ -82,7 +82,7 @@ export default function Page() {
       <main>
         <article>
           {' '}
-          <Badge />
+          <Badge warehousename={''} />
           {loading && (
             <p style={{ textAlign: 'center', padding: 20, border: 2, borderColor: 'red' }}>
               {' '}
