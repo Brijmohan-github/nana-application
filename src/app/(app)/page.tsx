@@ -14,7 +14,7 @@ const Page = async () => {
     <>
       <main>
         <article>
-          <Badge />
+          <Badge warehousename={''} />
 
           <p>
             {' '}

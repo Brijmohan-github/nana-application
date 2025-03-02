@@ -139,7 +139,7 @@ export default function Page() {
     <>
       <main>
         <article>
-          <Badge />
+          <Badge warehousename={''} />
           <p>
             <button onClick={() => downloadinvoice(tabledata)}>⬇️ Download PDF</button>
           </p>
