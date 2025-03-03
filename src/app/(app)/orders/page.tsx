@@ -17,7 +17,7 @@ export default function Page() {
     const Wid = searchParams.get('wid') || 0
     setWid(Wid.toString())
 
-    if (id == '67b8acb1b0bbf82f075aff65') {
+    if (Wid == '67b8acb1b0bbf82f075aff65') {
       setWarehousename('Beri Khurd')
     } else if (id == '6798dacd2d646fbcc4ec16a4') {
       setWarehousename('Kasli')
@@ -66,7 +66,7 @@ export default function Page() {
       <main>
         <article>
           <view style={{ flexDirection: 'row' }}>
-            <Badge warehousename={warehousename} />{' '}
+            <Badge warehousename={warehousename} />
           </view>
           <div style={{ padding: '20px' }}>
             {loading ? (
