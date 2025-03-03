@@ -19,9 +19,9 @@ export default function Page() {
 
     if (Wid == '67b8acb1b0bbf82f075aff65') {
       setWarehousename('Beri Khurd')
-    } else if (id == '6798dacd2d646fbcc4ec16a4') {
+    } else if (Wid == '6798dacd2d646fbcc4ec16a4') {
       setWarehousename('Kasli')
-    } else if (id == '6795f9cb370a005539b72e14') {
+    } else if (Wid == '6795f9cb370a005539b72e14') {
       setWarehousename('Jhotwara')
     }
   }, [searchParams])
