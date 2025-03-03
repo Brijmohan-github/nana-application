@@ -23,6 +23,8 @@ export default function Page() {
       setWarehousename('Kasli')
     } else if (Wid == '6795f9cb370a005539b72e14') {
       setWarehousename('Jhotwara')
+    } else {
+      alert('You are not authrize to access!')
     }
   }, [searchParams])
 

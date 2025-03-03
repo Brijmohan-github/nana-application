@@ -22,6 +22,7 @@ export default function Page() {
   const [loading, setLoading] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [warehousename, setWarehousename] = useState('')
 
   const searchParams = useSearchParams()
 
@@ -29,10 +30,20 @@ export default function Page() {
     const Wid = searchParams.get('wid') || 0
     setWid(Wid.toString())
 
+    if (Wid == '67b8acb1b0bbf82f075aff65') {
+      setWarehousename('Beri Khurd')
+    } else if (Wid == '6798dacd2d646fbcc4ec16a4') {
+      setWarehousename('Kasli')
+    } else if (Wid == '6795f9cb370a005539b72e14') {
+      setWarehousename('Jhotwara')
+    } else {
+      alert('You are not authrize to access!')
+    }
+
     const p = searchParams.get('page') || 1
     setPage(Number(p))
 
-    const l = searchParams.get('limit') || 200
+    const l = searchParams.get('limit') || 1000
     setLimit(Number(l))
   }, [searchParams])
 
@@ -82,7 +93,7 @@ export default function Page() {
       <main>
         <article>
           {' '}
-          <Badge warehousename={''} />
+          <Badge warehousename={warehousename} />
           {loading && (
             <p style={{ textAlign: 'center', padding: 20, border: 2, borderColor: 'red' }}>
               {' '}
