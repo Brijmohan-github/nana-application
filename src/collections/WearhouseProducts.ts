@@ -120,10 +120,17 @@ export const WearhouseProducts: CollectionConfig = {
             // Use product IDs to filter wearhouseproducts
             results = await payload.find({
               collection: 'wearhouseproducts',
+              // where: {
+              //   wearhouseId: { equals: objectId },
+              //   categoryid: { equals: objectCatId },
+              //   // products: { in: productIds }, // Match any product in the list
+              // },
               where: {
                 wearhouseId: { equals: objectId },
-                categoryid: { equals: objectCatId },
-                // products: { in: productIds }, // Match any product in the list
+                or: [
+                  { categoryid: { equals: objectCatId } },
+                  { 'products.product_categories': { contains: objectCatId } }, // Check inside products array
+                ],
               },
               limit: limit,
               page: page,

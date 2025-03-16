@@ -59,11 +59,18 @@ export const Products: CollectionConfig = {
     // },
     {
       name: 'category',
+      label: 'इसे इस्तमाल ना करे ',
       type: 'relationship',
-      required: true,
+      // required: true,
       relationTo: 'categories',
     },
-
+    {
+      name: 'product_categories',
+      type: 'relationship',
+      required: true,
+      hasMany: true,
+      relationTo: 'categories',
+    },
     {
       name: 'imageone',
       type: 'upload',

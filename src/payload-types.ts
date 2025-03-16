@@ -108,7 +108,8 @@ export interface Product {
   title?: string | null;
   content?: string | null;
   weight?: string | null;
-  category: string | Category;
+  category?: (string | null) | Category;
+  product_categories: (string | Category)[];
   imageone?: (string | null) | Media;
   imagetwo?: (string | null) | Media;
   imagethree?: (string | null) | Media;
@@ -330,6 +331,7 @@ export interface ProductsSelect<T extends boolean = true> {
   content?: T;
   weight?: T;
   category?: T;
+  product_categories?: T;
   imageone?: T;
   imagetwo?: T;
   imagethree?: T;
