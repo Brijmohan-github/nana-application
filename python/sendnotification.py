@@ -27,7 +27,7 @@ def fetch_data():
 
 def send_firebase_notification(device_token, title, body):
     """Sends a push notification to a specific device token with title & description."""
-    access_token = "ya29.c.c0ASRK0GYtt0DcAKeWHUz2ova1AF-44dUlEKhivUaHKUlHZs7OXAGnRBCJeqGBZmsoJUOjejTG1pm9TiVHDrm2xKxJfhrHJbGQ11SSr8SAmOxHptyMA8M06Y9Zveiuqy3Z8yLeC_kUMont6Av4mr0TZST1sNIrILwGENwz_Djg-N7QBp1gVci67efdlBF5e9I-LBx0GoDtRcUij31hu-RtupVtAyiiN_dBgtyokTZebMd3RHus3yj80RXfls6V1FfDmpPgkzH9MsLTAqhUyJVsIAIli6AjtM5un1arXadXxcPKjrecKsMeAlbtvt8mO1kD5XRfHQ-V5d39th7qAPi4YHLYpAGk7J-y8P0EE-siO5CzKLp6osjsBvTxawT387D6fcZthcm4grX3cn45erOxBZywrqXQc8J674tV25R2sSR2ntIowYdoqRMhoz1I_WU_a-vOrpYBxrsXXg1wp8nFZztg8xfIFvqUwUmdSqa_u4g3IiWvI_slY1tB-zcQxZqoYa28F4FamM_9bw7472qV83n4bmceI6Z5wSlu8-JJyroU55y1JiquiJOy9sU_IS6M57vvOXa5vz3p-tZbxaq-smlcpYaMkZQo5jIks1xQztydphn76qJR2vzRB0dieRt9qiZao9JW14YsYxerMYhwgaX_9p1B0fhb4om6oFz-dMpQlsjZSm2VrVdBgpjYmgf6_VOefsS5myrmlSs5uvtoI4sSVBXs13uQibmZJy1Z0YsbUxXunQjki6_RYSQY7zeXoxO9rexyMS740b3_URwuOFSx88j_ucXt2h7UBmJMsgfWa6v8IJ7lhxqqjizJlY5cMQd1Ra8In4RbggS5Uh7BXUauIyjr3dew4w_r_dlJMWV-6dFdaZ3VO-n1_r_mevznZ1cf8xiwb3wc1Vepsyo2MWYZBkOQc1ty0y8pmVIjgtRQRrz9y3Q278otln7219nwy0ls-kr1x4kyeVqiZuq4c1cB9s9xtIsVOr4nOnQ8MMJ0908O3yI2cF3"
+    access_token = "ya29.c.c0ASRK0GbIpULOyJG8WSallcEdAulDkXMz7hx1ZRfbl_nxj2oypCGC66OaOhpg_L7lu89yzS12UcBgFqEUF7dAggJT1MAl14ukTZkyNh3UUw0lNN-Gx2ziiat5UTQvKujac_QUT_sXk-PmIrim98NvybPLCwfSl_S0DsPZilFbp-Icl_Bj0CJiH5fSH91yBvkf-3L4NL34Dk_mYDReXcmC2_K79KWRs9mjag5Vx7IhbIRKQcFjKafZFhrxQZYclo3Y1WhWz4asEvzQd83TjE6GcLK2I4RspzVNpvbBIyGv4QBPCjIGETU8nX3OwaRgaCx_JjcfNtCf_4AGMaTdFNtsqrpEdrnHwB72HlyD_jVoHS3qJsqc68CisCVuE385C1UauY-nSM7rmyOvJvRVvbg0BModSYYaZVe1q74RyXQxnW_Wh46i_Ip6y8Rdgx9VZxUjIVScyybY-Rzej8c3FtJW2s7e4UU514nbj5W4BZ0pzcZsIJ16RuhOpUcjmyMvW7haW1QOBbkhQeYR21mQScjio5Zox0SZkd3nnlxhi7oz712S9WvnYQYywcaz3cSo3i7kqJ7qkQeQ0wexni31nJfe76O-cxVU-Bx7r4I_Wjx--hSzh3e26Jm5Mcnak0xoRjda1Swd_uwm0x73s7m1Ry4kVfM3nd_xchZnlM-M8h_xpjc1M7B3J2dZsvz830hrQzm37Yp6Qinhl1bu-h-5l-sQyk4jozj9XxhvMnsUOvM8cuz_t_fFFYyb_vBg_sOvgUn_42nI9lnd_t_aUero1rWo7z5VUj7F7IIMtUqUej1eqogQRx7kek4cY0g58YXuMxdfn4eIhSOIO9i3_bXvy5zZQS_eM0pj3c82RMmaM21RZFo1lke8hwRRl4RJjlWesjzModtxybS4Vy8kXjWqsORsfmS5ViUuRdMyIoncSgQY6Iaf2SVOh_h-pMYvoms5SrWyVpyassFxwth1pc3hpwum6S_5ZqbmrIhne8FSZ2WJ5F8Xbsj8Jr4aVwR"
 
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -66,7 +66,7 @@ def get_unique_tokens():
         for token in unique_tokens:
             print(token)  # Print each unique token
             title = "रमज़ान मुबारक 📌"
-            body = "रमज़ान के लिए बेहतर डील खरीदें, ✅ फलों और ✅ मिठाइयों पर विशेष छूट"
+            body = "रमज़ान के लिए बेहतर डील खरीदें,Angur 1 kg 90 rs केला 1 kg 45 rs  सेब   1 kg 160 rs  चीकू 1 kg 80  rs  खरबूजा 1 kg 55 rs  तरबूज 1 kg  30 rs संतरा  1 kg  60 rs खीरा  1 kg  25 rs  टमाटर  1 kg  20 rs Nimbu 250 gm 35 rs Papita 1 kg 50 rs Hari mirch 250 gm 15 rs Adrak 250 gm 20 rs Roohafza 01 bottel 150 rs, ✅ फलों और ✅ मिठाइयों पर विशेष छूट"
             send_firebase_notification(token, title, body)
         return unique_tokens
     return []
