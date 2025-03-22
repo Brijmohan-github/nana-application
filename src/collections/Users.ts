@@ -65,6 +65,17 @@ export const Users: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'country',
+      type: 'select',
+      options: [
+        { label: 'Saudi Arabia', value: '+966' },
+        { label: 'India', value: '+91' },
+        { label: 'United Arab Emirates', value: '+971' },
+        { label: 'Indonesia', value: '+62' }
+      ], 
+      admin: { position: 'sidebar' },
+    },
+    {
       label: 'Pin code',
       name: 'pincode',
       type: 'text',

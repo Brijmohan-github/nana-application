@@ -68,8 +68,14 @@ export const Wearhouse: CollectionConfig = {
     {
       name: 'country',
       type: 'select',
-      options: ['SA', 'IN'],
+    //  options: ['SA', 'IN', 'AE'],
       admin: { position: 'sidebar' },
+      options: [
+        { label: 'Saudi Arabia', value: '+966' },
+        { label: 'India', value: '+91' },
+        { label: 'United Arab Emirates', value: '+971' },
+        { label: 'Indonesia', value: '+62' }
+      ],
     },
     {
       name: 'pincode',
